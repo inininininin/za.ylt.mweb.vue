@@ -22,6 +22,17 @@ const globalRoutes = [
     name: '/tihuan',
     component:  _import( 'tihuan'),
   },
+  {
+    path: '/agreementPage',
+    name: '/agreementPage',
+    component:  _import( 'agreementPage'),
+  },
+  {
+    path: '/forgetPwd',
+    name: '/forgetPwd',
+    component:  _import( 'forgetPwd'),
+  },
+  
 ]
 //页面
 const mainRoutes = [

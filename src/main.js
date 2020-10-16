@@ -6,8 +6,11 @@ import router from './router'
 import qs from 'qs';  
 import common from './components/public/common.js'
 import publicRequest from './components/public/publicRequest.js' 
+import registeredModel from './components/public/registeredModel.js' 
 import Vant from 'vant';
 import 'vant/lib/index.css';
+
+registeredModel()
 moment.locale('zh-cn');
 Vue.use(Vant);
 Vue.prototype.moment = moment;

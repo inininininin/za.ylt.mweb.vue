@@ -27,6 +27,10 @@ function checkLogin(_hospitalId){
       }
     })
 }
+function backFn(){
+  router.back()
+}
 export default {
-	checkLogin
+  checkLogin,
+  backFn
 };
