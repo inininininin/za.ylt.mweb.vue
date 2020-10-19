@@ -11,9 +11,9 @@ let request = {
     _request(type,url,data,dataType,header,doFunction,errFunction){
         let _data = ''
         if(header == 'application/x-www-form-urlencoded'){
-            qs.stringify(data)
+            _data = qs.stringify(data)
         }else if(header == 'application/json'){
-            JSON.stringify(data)
+            _data = JSON.stringify(data)
         }
         axios({
             method : type,

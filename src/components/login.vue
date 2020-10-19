@@ -7,9 +7,10 @@
       <div class="account">
         <div class="account_tel">
           <img src="../assets/iphone@2x.png" alt="">
-          <input type="test" v-model="account.tel" name="account" placeholder="输入手机号" @keyup.enter="loginFn">
+          <input type="test" v-model="account.tel" @keyup="account.tel=account.tel.replace(/[^\d]/g,'')" name="account" placeholder="输入手机号" @keyup.enter="loginFn">
           <img src="../assets/XCopy@2x.png" alt="" v-if="account.tel" @click="account.tel = ''">
         </div>
+
         <div class="account_pwd">
           <img src="../assets/mima@2x.png" alt="">
           <input type="password" v-model="account.pwd" ref="pwd" name="pwd" placeholder="输入密码" @keyup.enter="loginFn">
@@ -31,7 +32,7 @@
           </router-link>
         </p>
       </div>
-      <button class="loginButtonClass" type="submit" value="医院登录" @click="loginFn()">登录</button>
+      <button class="loginButtonClass" type="submit" @click="loginFn()">登录</button>
       <div class="forgotPassword"> 
         <router-link :to="{path:'/forgetPwd'}">
           <span>修改密码</span>
@@ -69,7 +70,40 @@ export default {
       }
     },
     loginFn(){
+      this.$publicRequest.getLoginData(res => {
+        if(res.code == 0){
+          this.$publicRequest.getLoginRefreshData(res => {
+            if(res.code == 0){
+              debugger
+              let typeNum = parseInt(res.hospitalIs) + parseInt(res.clinicIs) + parseInt(res.hospitalOperateIs) + 
+              parseInt(res.operateIs)
+              if(typeNum > 1){
+                this.$router.replace({path:'/'})
+                return
+              }else{
+                if(res.hospitalIs){
+                  this.$router.replace({path:'/hospital/index'})
+                }
+                if(res.clinicIs){
+                  this.$router.replace({path:'/clinic/index'})
+                }
+                if(res.hospitalOperateIs){
+                  this.$router.replace({path:'/'})
+                }
+                if(res.operateIs){
+                  this.$router.replace({path:'/operating/index'})
+                }
+              }
+              
+            }
+          },{
 
+          })
+        }
+      },{
+        account: this.account.tel,
+        password: this.account.pwd
+      })
     },
     changeFn(_value){
       // 
