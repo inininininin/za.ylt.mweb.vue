@@ -57,7 +57,7 @@ export default {
     }
   },
   mounted(){
-
+    this.$common.loginRefreshFn(false)
   },
   methods:{
     eyeFn(){
@@ -70,40 +70,26 @@ export default {
       }
     },
     loginFn(){
-      this.$publicRequest.getLoginData(res => {
-        if(res.code == 0){
-          this.$publicRequest.getLoginRefreshData(res => {
+      if(this.account.agreementValue){
+        if(this.account.tel && this.account.pwd){
+          this.$publicRequest.getLoginData(res => {
             if(res.code == 0){
-              debugger
-              let typeNum = parseInt(res.hospitalIs) + parseInt(res.clinicIs) + parseInt(res.hospitalOperateIs) + 
-              parseInt(res.operateIs)
-              if(typeNum > 1){
-                this.$router.replace({path:'/'})
-                return
-              }else{
-                if(res.hospitalIs){
-                  this.$router.replace({path:'/hospital/index'})
-                }
-                if(res.clinicIs){
-                  this.$router.replace({path:'/clinic/index'})
-                }
-                if(res.hospitalOperateIs){
-                  this.$router.replace({path:'/'})
-                }
-                if(res.operateIs){
-                  this.$router.replace({path:'/operating/index'})
-                }
-              }
-              
+              this.$common.loginRefreshFn(false)
             }
           },{
-
+            account: this.account.tel,
+            password: this.account.pwd
           })
+          this.$common.loginRefreshFn()
+        }else{
+          this.$toast('请填写完整账号密码')
+          
         }
-      },{
-        account: this.account.tel,
-        password: this.account.pwd
-      })
+        
+      }else{
+        this.$toast('请勾选登录协议')
+      }
+      
     },
     changeFn(_value){
       // 
@@ -118,6 +104,11 @@ export default {
 .login{
   height: 100%;
   width: 100%;
+  overflow-y:scroll;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
 }
 .nav{
   width: 100%;

@@ -26,8 +26,8 @@ function getLoginData(doFunction,_data){
     },()=>{})
 }
 //修改账号密码
-function getLoginRefreshData(doFunction,_data){
-    axiosRequest.request.public_requests("post","/ylt/login-refresh",_data,true,'application/x-www-form-urlencoded',res=>{
+function getLoginRefreshData(doFunction){
+    axiosRequest.request.public_requests("post","/ylt/login-refresh",'',true,'application/x-www-form-urlencoded',res=>{
         doFunction(res)
     },()=>{})
 }

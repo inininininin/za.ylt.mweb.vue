@@ -32,6 +32,11 @@ const globalRoutes = [
     name: '/forgetPwd',
     component:  _import( 'forgetPwd'),
   },
+  {
+    path: '/selectPort',
+    name: '/selectPort',
+    component:  _import( 'selectPort'),
+  },
   
 ]
 //页面
@@ -94,7 +99,6 @@ const router = new Router({
 
 router.afterEach((to,from) =>{
   if(to.path == from.path){
-    // next({path:'/tihuan',query:to.query})
     router.push({path:'/tihuan',query:{query:JSON.stringify(to.query),path:to.path}})
   }
 })

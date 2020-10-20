@@ -8,6 +8,7 @@ import common from './components/public/common.js'
 import publicRequest from './components/public/publicRequest.js' 
 import registeredModel from './components/public/registeredModel.js' 
 import Vant from 'vant';
+import store from './store'
 import 'vant/lib/index.css';
 
 registeredModel()
@@ -18,7 +19,7 @@ Vue.config.productionTip = false
 Vue.prototype.$publicRequest = publicRequest
 Vue.prototype.$qs = qs
 Vue.prototype.$common = common
-
+Vue.prototype.$store = store
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
