@@ -3,12 +3,12 @@ import Vue from 'vue';
 import qs from 'qs';
 let vue = new Vue();
 let request = {
-    public_requests(type,url,data,dataType,header,doFunction,errFunction){
+    public_requests(type,url,data,dataType,header,successFunction,failFunciton,errFunction){
         return new Promise(()=>{
-            this._request(type,url,data,dataType,header,doFunction,errFunction)
+            this._request(type,url,data,dataType,header,successFunction,failFunciton,errFunction)
         })
     },
-    _request(type,url,data,dataType,header,doFunction,errFunction){
+    _request(type,url,data,dataType,header,successFunction,failFunciton,errFunction){
         let _data = ''
         if(header == 'application/x-www-form-urlencoded'){
             _data = qs.stringify(data)
@@ -24,14 +24,13 @@ let request = {
             }
         }).then(res => {
             if(!dataType){
-                doFunction(res.data)
+                successFunction(res.data)
                 return ;
             }
-            if(res.data.codeMsg){
-                vue.$toast(res.data.codeMsg);
-            }
             if(res.data.code == 0){
-                doFunction(res.data)
+                successFunction(res.data)
+            }else{
+                failFunciton(res.data)
             }
         }).catch(err => {
             errFunction(err)

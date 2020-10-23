@@ -74,21 +74,21 @@ export default {
                 this.account.verificationState = true;
                 this.account.verificationTime = 60;
                 this.$publicRequest.getVerificationData(res=>{
-                    if(res.code != 0){
-                        this.account.verificationState = false;
-                        this.account.verificationTime = 60;
-                        window.clearInterval(verificat_setInterval);
-                        if(!res.codeMsg){
-                            this.$toast('操作失败，请重试')
-                        }
-                        return
-                    }
                     if(res.codeMsg){
                         this.$toast(res.codeMsg)
                     }
-                    
+                },res =>{
+                    this.account.verificationState = false;
+                    this.account.verificationTime = 60;
+                    window.clearInterval(verificat_setInterval);
+                    if(!res.codeMsg){
+                        this.$toast('操作失败，请重试')
+                    }else{
+                        this.$toast(res.codeMsg)
+                    }
+                    return
                 },{
-                    phone:this.account.tel
+                    // phone:this.account.tel
                 })
                 let verificat_setInterval = setInterval(()=>{
                     this.account.verificationTime -- 
@@ -104,6 +104,10 @@ export default {
             this.$publicRequest.getForgetPwdData(res=>{
                 if(res.data == 0){
                     this.$toast('操作成功')
+                }
+            },res=>{    
+                if(res.codeMsg){
+                    this.$toast(res.codeMsg);
                 }
             },{
                 phone: this.account.tel,

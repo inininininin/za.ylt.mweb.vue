@@ -57,7 +57,11 @@ export default {
     }
   },
   mounted(){
-    this.$common.loginRefreshFn(false)
+    this.$common.loginRefreshFn(false,()=>{
+       
+    },res=>{
+      return 1
+    })
   },
   methods:{
     eyeFn(){
@@ -73,14 +77,19 @@ export default {
       if(this.account.agreementValue){
         if(this.account.tel && this.account.pwd){
           this.$publicRequest.getLoginData(res => {
+            
             if(res.code == 0){
-              this.$common.loginRefreshFn(false)
+              this.$common.loginRefreshFn(false,()=>{})
+            }
+          },res=>{
+            debugger
+            if(res.codeMsg){
+                this.$toast(res.codeMsg);
             }
           },{
             account: this.account.tel,
             password: this.account.pwd
           })
-          this.$common.loginRefreshFn()
         }else{
           this.$toast('请填写完整账号密码')
           

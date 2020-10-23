@@ -60,15 +60,19 @@ export default {
         }
     },
     mounted(){
-        this.$common.loginRefreshFn(true)
-        console.log(this.$store.state.user.loginRefreshData)
-        if(this.$store.state.user.loginRefreshData){
-            let _data = this.$store.state.user.loginRefreshData
-            this.optionList[0].showValue = _data.hospitalIs
-            this.optionList[1].showValue = _data.clinicIs
-            this.optionList[2].showValue = _data.operateIs
-            this.optionList[3].showValue = _data.hospitalOperateIs
-        }
+        this.$common.loginRefreshFn(true,()=>{
+            console.log(this.$store.state.user.loginRefreshData)
+            if(this.$store.state.user.loginRefreshData){
+                let _data = this.$store.state.user.loginRefreshData
+                this.optionList[0].showValue = _data.hospitalIs
+                this.optionList[1].showValue = _data.clinicIs
+                this.optionList[2].showValue = _data.operateIs
+                this.optionList[3].showValue = _data.hospitalOperateIs
+            }
+        },()=>{
+            return
+        })
+        
     },
     methods:{
         routerFn(){

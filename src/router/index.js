@@ -98,6 +98,7 @@ const router = new Router({
 })
 
 router.afterEach((to,from) =>{
+  debugger
   if(to.path == from.path){
     router.push({path:'/tihuan',query:{query:JSON.stringify(to.query),path:to.path}})
   }
