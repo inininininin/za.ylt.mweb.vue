@@ -35,11 +35,9 @@ function getLoginData(successFunction,failFunciton,_data){
 function getLoginRefreshData(successFunction,failFunciton){
     axiosRequest.request.public_requests("post","/ylt/login-refresh",'',true,'application/x-www-form-urlencoded',
     res=>{
-        debugger
         successFunction(res)
     },
     res =>{
-        debugger
         failFunciton(res)
     },()=>{})
 }

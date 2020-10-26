@@ -15,7 +15,7 @@ import 'vant/lib/index.css';
 registeredModel()
 moment.locale('zh-cn');
 Vue.use(Vant);
-Vue.prototype.moment = moment;
+Vue.prototype.$moment = moment;
 Vue.config.productionTip = false
 Vue.prototype.$publicRequest = publicRequest
 Vue.prototype.$qs = qs

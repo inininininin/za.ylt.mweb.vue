@@ -19,7 +19,7 @@
                         </div>
                     </div>  
                     <div class="li_time">
-                        <span>推送时间：{{item.pushTime? moment(item.pushTime).format('YYYY-MM-DD HH:mm:ss'):''}}</span>
+                        <span>推送时间：{{item.pushTime? $moment(item.pushTime).format('YYYY-MM-DD HH:mm:ss'):''}}</span>
                     </div>
                 </li>
                 </van-list>
@@ -44,6 +44,7 @@ export default {
         }
     },
     activated(){
+
         if(this.query != JSON.stringify(this.$route.query)){
             Object.assign(this.$data, this.$options.data());
             this.start()
@@ -52,6 +53,7 @@ export default {
     },
     methods:{
         start(){
+            this.query = JSON.stringify(this.$route.query);
             this.getData()
         },
         getData(){

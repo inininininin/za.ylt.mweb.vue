@@ -82,6 +82,7 @@ export default {
   },
   methods:{
     start(){
+      this.query = JSON.stringify(this.$route.query);
       this.$common.loginRefreshFn(true,()=>{
         this.getData()
       },()=>{

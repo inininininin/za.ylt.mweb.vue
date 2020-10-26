@@ -79,7 +79,7 @@ export default {
           this.$publicRequest.getLoginData(res => {
             
             if(res.code == 0){
-              this.$common.loginRefreshFn(false,()=>{})
+              this.$common.loginRefreshFn(false,()=>{},()=>{})
             }
           },res=>{
             debugger

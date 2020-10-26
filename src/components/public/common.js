@@ -31,7 +31,6 @@ function loginRefreshFn(checkState,successFunction,failFunciton){
       }
     }
   },res => {
-    debugger
     let a = failFunciton(res)
     if(a){
       return

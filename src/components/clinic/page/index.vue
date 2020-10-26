@@ -10,7 +10,7 @@
           <img src="../../../assets/sousuo@2x.png" alt="">
           <input type="search" placeholder="搜索病源"> 
         </div>
-        <div class="nav_top_right">
+        <div class="nav_top_right" @click="screeningShow = true">
           <span>筛选</span>
           <img src="../../../assets/screen.png" alt="">
         </div>
@@ -30,7 +30,10 @@
     </div>
     <div style="height:86px"></div>
     <keep-alive>
-      <component v-bind:is="componentName" style="height:calc(100% - 154.5px);touch-action: pan-y;-webkit-overflow-scrolling: touch;overflow-y: scroll;"></component>
+      <screening @childFn="parentFn" :screeningShow="screeningShow" v-if="screeningShow"></screening>
+    </keep-alive>
+    <keep-alive>
+      <component :is="componentName" style="height:calc(100% - 154.5px);touch-action: pan-y;-webkit-overflow-scrolling: touch;overflow-y: scroll;"></component>
     </keep-alive>
     <div style="height:50px;"></div>
     <bottomNav></bottomNav>
@@ -41,20 +44,33 @@
 import addClinic from '../functionPage/addClinic'
 import clinicNo from '../functionPage/clinicNo'
 import clinicYes from '../functionPage/clinicYes'
+import screening from '../functionPage/screening'
 
 import bottomNav from '../functionPage/bottomNav'
+
 export default {
   name: 'index',
   data () {
     return {
+      query:'',
       // 组件切换值
-			componentName :'addClinic',
+      componentName :'addClinic',
+      conditionsData:{
+        kw:'',
+        status:'',
+        pushTimeStart:'',
+        pushTimeEnd:'',
+        hospitalConfirmTimeStart:'',
+        hospitalConfirmTimeEnd:'',
+      },
+      screeningShow:false,
     }
   },
   components:{
     addClinic,
     clinicNo,
     clinicYes,
+    screening,
     bottomNav
   },
   activated(){
@@ -66,9 +82,10 @@ export default {
   methods:{
     start(){
       this.$common.loginRefreshFn(true,()=>{
+        this.query = JSON.stringify(this.$route.query);
         let width = this.$refs.nav_type.getBoundingClientRect().width/6
         this.$refs.xiahuaxian.style.webkitTransform = "translateX("+(width)+"px) translateX(-50%)"
-      })
+      },()=>{})
     },
     typeFn(_value){
       let width = this.$refs.nav_type.getBoundingClientRect().width/6
@@ -86,6 +103,18 @@ export default {
           this.$refs.xiahuaxian.style.webkitTransform = "translateX("+(width)*5+"px) translateX(-50%)"
           break;
       }
+    },
+    parentFn(_value){
+      this.conditionsData = {
+        kw : '',
+        status : _value.status,
+        pushTimeStart : _value.pushTimeStart,
+        pushTimeEnd : _value.pushTimeEnd,
+        hospitalConfirmTimeStart : _value.hospitalConfirmTimeStart,
+        hospitalConfirmTimeEnd : _value.hospitalConfirmTimeEnd,
+      }
+      this.screeningShow = _value.screeningShow   
+      console.log(_value)
     } 
   }
 }
