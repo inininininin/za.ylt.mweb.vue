@@ -1,6 +1,6 @@
 <template>
     <div class="screening">
-        <van-popup v-model="screeningShow" @close="submitFn" position="right" :style="{ height: '100%',width:'78.67%','min-width':'295px','max-width':'295px'}">
+        <van-popup v-model="conditionsData.screeningShow" position="right" :style="{ height: '100%',width:'78.67%','min-width':'295px','max-width':'295px'}">
             <div class="screening_content">
                 <div class="screening_content_state">
                     <div class="screening_content_stateTitle">状态</div>
@@ -46,7 +46,6 @@ export default {
     data(){
         return{
             currentDate: '',
-            show:true,
             screening:{
                 show:false,
                 status:'',
@@ -59,7 +58,7 @@ export default {
             chooseTimeShow:false,
         }
     },
-    props:['screeningShow'],
+    props:['conditionsData'],
     activated(){
         if(this.query != JSON.stringify(this.$route.query)){
             Object.assign(this.$data, this.$options.data());
@@ -88,16 +87,17 @@ export default {
             
         },
         resetFn(){
+            debugger
             Object.assign(this.$data, this.$options.data());
             this.start();
-            this.screeningShow = false
+            this.conditionsData.screeningShow = false
             this.$emit('childFn', this.screening);
-            this.$emit('screeningShow', false);
         },
         submitFn(){
-            this.screeningShow = false
+            debugger
+            this.conditionsData.screeningShow = false
             this.$emit('childFn', this.screening);
-            this.$emit('screeningShow', false);
+            Object.assign(this.$data, this.$options.data());
         },
         confirmTimeFn(_value){
             debugger

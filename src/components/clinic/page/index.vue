@@ -10,7 +10,7 @@
           <img src="../../../assets/sousuo@2x.png" alt="">
           <input type="search" placeholder="搜索病源"> 
         </div>
-        <div class="nav_top_right" @click="screeningShow = true">
+        <div class="nav_top_right" @click="conditionsData.screeningShow = true">
           <span>筛选</span>
           <img src="../../../assets/screen.png" alt="">
         </div>
@@ -30,10 +30,10 @@
     </div>
     <div style="height:86px"></div>
     <keep-alive>
-      <screening @childFn="parentFn" :screeningShow="screeningShow" v-if="screeningShow"></screening>
+      <screening @childFn="parentFn" :conditionsData="conditionsData" v-if="conditionsData.screeningShow"></screening>
     </keep-alive>
     <keep-alive>
-      <component :is="componentName" style="height:calc(100% - 154.5px);touch-action: pan-y;-webkit-overflow-scrolling: touch;overflow-y: scroll;"></component>
+      <component :is="componentName" ref="componentRef" :conditionsData="conditionsData" style="height:calc(100% - 154.5px);touch-action: pan-y;-webkit-overflow-scrolling: touch;overflow-y: scroll;"></component>
     </keep-alive>
     <div style="height:50px;"></div>
     <bottomNav></bottomNav>
@@ -56,6 +56,7 @@ export default {
       // 组件切换值
       componentName :'addClinic',
       conditionsData:{
+        screeningShow:false,
         kw:'',
         status:'',
         pushTimeStart:'',
@@ -63,7 +64,6 @@ export default {
         hospitalConfirmTimeStart:'',
         hospitalConfirmTimeEnd:'',
       },
-      screeningShow:false,
     }
   },
   components:{
@@ -97,23 +97,50 @@ export default {
         case 1 :
           this.componentName = 'clinicNo';
           this.$refs.xiahuaxian.style.webkitTransform = "translateX("+(width)*3+"px) translateX(-50%)"
+          this.$nextTick(()=>{
+            this.$refs.componentRef.start()
+          })
           break;
         case 2 :
           this.componentName = 'clinicYes';
           this.$refs.xiahuaxian.style.webkitTransform = "translateX("+(width)*5+"px) translateX(-50%)"
+          this.$nextTick(()=>{
+            this.$refs.componentRef.start()
+          })
           break;
       }
     },
     parentFn(_value){
-      this.conditionsData = {
-        kw : '',
-        status : _value.status,
-        pushTimeStart : _value.pushTimeStart,
-        pushTimeEnd : _value.pushTimeEnd,
-        hospitalConfirmTimeStart : _value.hospitalConfirmTimeStart,
-        hospitalConfirmTimeEnd : _value.hospitalConfirmTimeEnd,
+      let width = this.$refs.nav_type.getBoundingClientRect().width/6
+      this.conditionsData.pushTimeStart =_value.pushTimeStart? this.$moment(_value.pushTimeStart).valueOf():'';
+      this.conditionsData.pushTimeEnd =_value.pushTimeEnd? this.$moment(_value.pushTimeEnd).valueOf()+(1000*60*60*24-1):'';
+      this.conditionsData.hospitalConfirmTimeStart =_value.hospitalConfirmTimeStart? this.$moment(_value.hospitalConfirmTimeStart).valueOf():'';
+      this.conditionsData.hospitalConfirmTimeEnd =_value.hospitalConfirmTimeEnd? this.$moment(_value.hospitalConfirmTimeEnd).valueOf()+(1000*60*60*24-1):'';
+      this.conditionsData.screeningShow = _value.screeningShow;
+      // console.log('this.conditionsData.pushTimeStart'+this.$moment(this.conditionsData.pushTimeStart).format('YYYY-MM-DD HH:mm:ss'))
+      // console.log('this.conditionsData.pushTimeEnd'+this.$moment(this.conditionsData.pushTimeEnd).format('YYYY-MM-DD HH:mm:ss'))
+      // console.log('this.conditionsData.hospitalConfirmTimeStart'+this.$moment(this.conditionsData.hospitalConfirmTimeStart).format('YYYY-MM-DD HH:mm:ss'))
+      // console.log('this.conditionsData.hospitalConfirmTimeEnd'+this.$moment(this.conditionsData.hospitalConfirmTimeEnd).format('YYYY-MM-DD HH:mm:ss'))
+      if(_value.status == 1){
+        this.componentName = 'clinicNo';
+        this.$refs.xiahuaxian.style.webkitTransform = "translateX("+(width)*3+"px) translateX(-50%)"
+        this.$nextTick(()=>{
+          this.$refs.componentRef.start()
+        })
+        return
+      }else if(_value.status == 4){
+        this.componentName = 'clinicYes';
+        this.$refs.xiahuaxian.style.webkitTransform = "translateX("+(width)*5+"px) translateX(-50%)"
+        this.$nextTick(()=>{
+          this.$refs.componentRef.start()
+        })
+        return
       }
-      this.screeningShow = _value.screeningShow   
+      if(this.componentNamem != 'addClinic'){
+        this.$nextTick(()=>{
+          this.$refs.componentRef.start()
+        })
+      }
       console.log(_value)
     } 
   }

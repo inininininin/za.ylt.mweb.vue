@@ -10,6 +10,11 @@ const Coms = [
         name: "topNav",
         component: () =>
             import ('@/components/moduleComponents/topNav')
+    },
+    {
+        name: "topNavSearchScreening",
+        component: () =>
+            import ('@/components/moduleComponents/topNav_searchScreening')
     }
 ]
 

@@ -43,15 +43,15 @@ export default {
             hospitalConfirmTimeEnd:''
         }
     },
+    props:['conditionsData'],
     activated(){
         if(this.query != JSON.stringify(this.$route.query)){
-            Object.assign(this.$data, this.$options.data());
             this.start()
-            console.log(this.$store.state.user.loginRefreshData)
         }
     },
     methods:{
         start(){
+            Object.assign(this.$data, this.$options.data());
             this.query = JSON.stringify(this.$route.query);
             this.getData()
         },
@@ -75,16 +75,17 @@ export default {
                 pn: _this.page,
                 ps: 15,
                 status: 4,
-                pushTimeStart: _this.pushTimeStart,
-                pushTimeEnd: _this.pushTimeEnd,
-                hospitalConfirmTimeStart: _this.hospitalConfirmTimeStart,
-                hospitalConfirmTimeEnd: _this.hospitalConfirmTimeEnd,
+                pushTimeStart: _this.conditionsData.pushTimeStart,
+                pushTimeEnd: _this.conditionsData.pushTimeEnd,
+                hospitalConfirmTimeStart: _this.conditionsData.hospitalConfirmTimeStart,
+                hospitalConfirmTimeEnd: _this.conditionsData.hospitalConfirmTimeEnd,
             })
         },
         nextPage(){
             this.page++
             this.getData()
         }
+        
     }
 }
 </script>
