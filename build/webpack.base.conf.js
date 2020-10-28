@@ -88,5 +88,11 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  }
+  },
+  externals: {
+    Vue: "Vue",
+    // Vuex: "Vuex",
+    // 'vant': 'vant',
+    // "moment": "moment"
+  },
 }

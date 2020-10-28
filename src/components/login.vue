@@ -82,7 +82,6 @@ export default {
               this.$common.loginRefreshFn(false,()=>{},()=>{})
             }
           },res=>{
-            debugger
             if(res.codeMsg){
                 this.$toast(res.codeMsg);
             }

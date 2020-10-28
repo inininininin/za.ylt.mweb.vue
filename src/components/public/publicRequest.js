@@ -75,6 +75,27 @@ function getPathogenicData(successFunction,failFunciton,_data){
         failFunciton(res)
     },()=>{})
 }
+/*经理端*/
+//获取该用户下的医院列表
+function getHospitalData(successFunction,failFunciton,_data){
+    axiosRequest.request.public_requests("post","/ylt/clientend2/manageend/hospitals",_data,true,'application/x-www-form-urlencoded',
+    res=>{
+        successFunction(res)
+    },
+    res =>{
+        failFunciton(res)
+    },()=>{})
+}
+//获取全部医院列表
+function getAllHospitalData(successFunction,failFunciton,_data){
+    axiosRequest.request.public_requests("post","/ylt/clientend2/manageend/allhospitals",_data,true,'application/x-www-form-urlencoded',
+    res=>{
+        successFunction(res)
+    },
+    res =>{
+        failFunciton(res)
+    },()=>{})
+}
 export default {
     //获取用户协议接口
     getAgreementData,
@@ -96,4 +117,10 @@ export default {
     /*门诊端*/
     //获取病源列表
     getPathogenicData,
+
+    /*经理端*/
+    //获取医院列表
+    getHospitalData,
+    //获取全部医院列表
+    getAllHospitalData
 };

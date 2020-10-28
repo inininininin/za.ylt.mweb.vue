@@ -1,25 +1,25 @@
 <template>
     <div class="screening">
-        <van-popup v-model="conditionsData.screeningShow" @close="conditionsData.screeningShow = false" position="right" :style="{ height: '100%',width:'78.67%','min-width':'295px','max-width':'295px'}">
+        <van-popup v-model="hospitalData.screeningShow" @close="hospitalData.screeningShow = false" position="right" :style="{ height: '100%',width:'78.67%','min-width':'295px','max-width':'295px'}">
             <div class="screening_content">
                 <div class="screening_content_state">
                     <div class="screening_content_stateTitle">状态</div>
-                    <div @click="screeningFn(0)" :class="[screening.status==1? 'chooseColor':'']">未就诊</div>
-                    <div @click="screeningFn(1)" :class="[screening.status==4? 'chooseColor':'']">已就诊</div>
-                </div>
+                    <div @click="screeningFn(0)" :class="[!screening.axiosData? 'chooseColor':'']">全部医院</div>
+                    <div @click="screeningFn(1)" :class="[screening.axiosData? 'chooseColor':'']">我的医院</div>
+                </div>  
                 <div class="screening_content_confirmTime">
                     <div class="screening_content_confirmTimeTitle">
                         确认就诊时间
                     </div>
-                    <div @click="screeningFn(2)" :class="[screening.hospitalConfirmTimeStart? 'chooseColor':'']">{{screening.hospitalConfirmTimeStart? screening.hospitalConfirmTimeStart:'开始时间'}}</div>
-                    <div @click="screeningFn(3)" :class="[screening.hospitalConfirmTimeEnd? 'chooseColor':'']">{{screening.hospitalConfirmTimeEnd? screening.hospitalConfirmTimeEnd:'结束时间'}}</div>
+                    <div @click="screeningFn(2)" :class="[screening.sorts=='clinicCount'? 'chooseColor':'']">{{screening.hospitalConfirmTimeStart? screening.hospitalConfirmTimeStart:'门诊数量最多'}}</div>
+                    <div @click="screeningFn(3)" :class="[screening.sorts=='patientCount'? 'chooseColor':'']">{{screening.hospitalConfirmTimeEnd? screening.hospitalConfirmTimeEnd:'病源数量最多'}}</div>
                 </div>
                 <div class="screening_content_pushTime">
                     <div class="screening_content_pushTimeTitle">
-                        门诊推送时间
+                        <!-- 门诊推送时间 -->
                     </div>
-                    <div @click="screeningFn(4)" :class="[screening.pushTimeStart? 'chooseColor':'']">{{screening.pushTimeStart? screening.pushTimeStart:'开始时间'}}</div>
-                    <div @click="screeningFn(5)" :class="[screening.pushTimeEnd? 'chooseColor':'']">{{screening.pushTimeEnd? screening.pushTimeEnd:'结束时间'}}</div>
+                    <div @click="screeningFn(4)" :class="[screening.sorts=='addTime'? 'chooseColor':'']">{{screening.pushTimeStart? screening.pushTimeStart:'创建时间最近'}}</div>
+                    <div @click="screeningFn(5)" :class="[screening.sorts=='hospitalName'? 'chooseColor':'']">{{screening.pushTimeEnd? screening.pushTimeEnd:'医院名称A-Z'}}</div>
                 </div>
             </div>
         </van-popup>
@@ -27,16 +27,6 @@
             <div @click="resetFn">重选</div>
             <div @click="submitFn">确定</div>
         </div>
-        <van-popup v-model="chooseTimeShow" @close="cancelTimeFn" class="chooseTime" position="bottom" style="height:40%;width:100%;">
-            <van-datetime-picker
-                type="date"
-                v-model="currentDate"
-                title="选择年月日"
-                @confirm="confirmTimeFn"
-                @cancel="cancelTimeFn"
-                style="z-index:9999"
-                />
-        </van-popup>
     </div>
     
 </template>
@@ -47,18 +37,14 @@ export default {
         return{
             currentDate: '',
             screening:{
-                show:false,
-                status:'',
-                pushTimeStart:'',
-                pushTimeEnd:'',
-                hospitalConfirmTimeStart:'',
-                hospitalConfirmTimeEnd:'',
+                axiosData:1,
+                sorts:'',
+                orders:''
             },
             screeningState:'',
-            chooseTimeShow:false,
         }
     },
-    props:['conditionsData'],
+    props:['hospitalData'],
     activated(){
         if(this.query != JSON.stringify(this.$route.query)){
             Object.assign(this.$data, this.$options.data());
@@ -74,14 +60,26 @@ export default {
             this.screeningState = _value;
             switch(_value){
                 case 0:
-                    this.screening.status = 1;
+                    this.screening.axiosData = 0;
                     break;
                 case 1:
-                    this.screening.status = 4;
+                    this.screening.axiosData = 1;
                     break;
-                case 2: case 3: case 4: case 5:
-                    this.chooseTimeShow = true;
-                    this.currentDate = ''   
+                case 2:
+                    this.screening.sorts = 'clinicCount';
+                    this.screening.orders = 'desc';
+                    break;
+                case 3:
+                    this.screening.sorts = 'patientCount';
+                    this.screening.orders = 'desc';
+                    break;
+                case 4:
+                    this.screening.sorts = 'addTime';
+                    this.screening.orders = 'desc';
+                    break;
+                case 5:
+                    this.screening.sorts = 'hospitalName';
+                    this.screening.orders = 'asc';
                     break;
             }
             
@@ -89,38 +87,14 @@ export default {
         resetFn(){
             Object.assign(this.$data, this.$options.data());
             this.start();
-            this.conditionsData.screeningShow = false
+            this.hospitalData.screeningShow = false
             this.$emit('childFn', this.screening);
         },
         submitFn(){
-            this.conditionsData.screeningShow = false
+            this.hospitalData.screeningShow = false
             this.$emit('childFn', this.screening);
             // Object.assign(this.$data, this.$options.data());
-        },
-        confirmTimeFn(_value){
-            this.chooseTimeShow = false;
-            let _time = '';
-            if(_value)
-                _time = this.$moment(_value).format('YYYY/MM/DD')
-            console.log(_value)
-            switch(this.screeningState){
-                case 2:
-                    this.screening.hospitalConfirmTimeStart = _time;
-                    break;
-                case 3:
-                    this.screening.hospitalConfirmTimeEnd = _time;
-                    break;
-                case 4:
-                    this.screening.pushTimeStart = _time
-                    break;
-                case 5:
-                    this.screening.pushTimeEnd = _time
-                    break;
-            }
         },  
-        cancelTimeFn(){ 
-            this.chooseTimeShow = false
-        }
     }
 }
 </script>
@@ -168,18 +142,7 @@ export default {
 .screening_content_pushTime>div:nth-child(3){
     margin-left: 20px;
 }
-.screening_content_confirmTime>div:nth-child(3)::before,
-.screening_content_pushTime>div:nth-child(3)::before{
-    content: "";
-    position: absolute;
-    /* bottom: 0; */
-    top: 44px;
-    left: 138px;
-    width: 16px;
-    height: 1px;
-    border-radius: 6px;
-    background: #999999;
-}
+
 .screening_content_confirmTime{
     margin-top: 12px;
     margin-bottom: 25px;
@@ -212,9 +175,6 @@ export default {
 .button>div:last-child{
     background: #FF951B;
     border-radius: 0px 50px 50px 0px;
-}
-.chooseTime{
-    z-index: 9999!important;
 }
 .chooseColor{
     color: #333333!important;

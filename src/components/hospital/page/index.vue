@@ -4,7 +4,7 @@
       <h3>— 医院端 —</h3>
     </div>
     
-    <div class="content">
+    <div class="content" style="height: calc(100% - 50px);">
       <div class="shufflingNav">
         <div style="height:42.85px"></div> 
         <div class="shuffling_nav">
@@ -156,7 +156,7 @@ export default {
   padding-bottom: 5.5px;
 }
 .content{
-  height: calc(100% - 50px);
+  
   /* height: 100%; */
   width: 100%;
   overflow-y: scroll;

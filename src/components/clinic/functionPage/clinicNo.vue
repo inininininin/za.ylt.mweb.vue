@@ -70,6 +70,8 @@ export default {
             },res=>{
                 if(res.codeMsg){
                     _this.$toast(res.codeMsg);
+                    this.loading = false;
+                    this.finished = true;
                 }
             },{
                 clinicId:this.$store.state.user.loginRefreshData.clinicId,
