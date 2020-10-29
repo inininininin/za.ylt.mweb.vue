@@ -90,9 +90,9 @@ module.exports = {
     child_process: 'empty'
   },
   externals: {
-    Vue: "Vue",
-    // Vuex: "Vuex",
-    // 'vant': 'vant',
-    // "moment": "moment"
-  },
+    Vue: 'vue',
+    vant:'vant',
+    vuex:'vuex',
+    // 'vue-router': 'VueRouter'
+  }
 }

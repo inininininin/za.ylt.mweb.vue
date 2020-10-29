@@ -14,7 +14,7 @@
                             <span>{{item.realname}}</span>
                         </div>
                         <div class="li_top_right">
-                            <img src="../../../assets/yijiuzhen@2x.png" alt="">
+                            <img draggable="false" src="../../../assets/yijiuzhen@2x.png" alt="">
                             <span>已就诊</span>
                         </div>
                     </div>  

@@ -7,7 +7,7 @@
         <div class="optionList">
             <div  v-for="(item,inx) in optionList" :key="inx" >
                 <div v-if="item.showValue" class="option" @click="goPath=item.pathValue">
-                    <img :src="item.imgSrc" alt="">
+                    <img draggable="false" :src="item.imgSrc" alt="">
                     <div class="optionName">
                         <h3>{{item.title}}</h3>
                         <p>{{item.brief}}</p>
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="navBottom">
-            <img src="../assets/go.png" alt="" @click="routerFn">
+            <img draggable="false" src="../assets/go.png" alt="" @click="routerFn">
         </div>
     </div>
     
@@ -94,7 +94,7 @@ export default {
   	-webkit-overflow-scrolling: touch;
 }
 .navTitle{
-    margin: 60px 0px 45px 0px;
+    margin: 20px 0px 15px 0px;
 }
 .navTitle>h1{
     font-size: 24px;
@@ -112,7 +112,7 @@ export default {
     line-height: 24px;
 }
 .optionList{
-    margin-bottom: 45px;
+    margin-bottom: 15px;
 }
 .option{
     width: 100%;
@@ -120,7 +120,7 @@ export default {
     border: 2px solid #e2e2e2;
     border-radius: 15px;
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     overflow: hidden;
 }
 .option:hover{
@@ -163,7 +163,7 @@ export default {
     width: 100%;
     height: 65px;
     text-align: center;
-    margin-bottom: 55px;
+    /* margin-bottom: 55px; */
 }
 .navBottom>img{
     height: 65px;

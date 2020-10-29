@@ -2,10 +2,10 @@
   <div class="index">
     <div class="navBox">
       <topNavSearchScreening>
-        <img slot="search" src="../../../assets/sousuo@2x.png" alt="">
+        <img draggable="false" slot="search" src="../../../assets/sousuo@2x.png" alt="">
         <input slot="search" type="text" placeholder="搜索医院">
         <span slot="screening" @click="hospitalData.screeningShow = true">筛选</span>
-        <img slot="screening" src="../../../assets/shaixuan.png" alt="">
+        <img draggable="false" slot="screening" src="../../../assets/shaixuan.png" alt="">
       </topNavSearchScreening>
       <div class="index_title">
         <div class="index_title_left">
@@ -14,7 +14,7 @@
         </div>
         <div class="index_title_right">
           <span>新增医院</span>
-          <img src="../../../assets/right@2x.png" alt="">
+          <img draggable="false" src="../../../assets/right@2x.png" alt="">
         </div>
       </div>
     </div>
@@ -31,12 +31,12 @@
         <li v-for="(item,inx) in hospitalList" :key="inx">
           <div class="hospitalMember_tile">
             <div class="hospitalMember_tile_left">
-              <img src="../../../assets/small-logo@2x.png" alt="">
+              <img draggable="false" src="../../../assets/small-logo@2x.png" alt="">
               <span>{{item.hospitalName}}</span>
             </div>
             <div class="hospitalMember_tile_right">
-              <img src="../../../assets/yirenzheng.svg" alt="">
-              <!-- <img src="../../../assets/weirenzheng.svg" alt=""> --> 
+              <img draggable="false" src="../../../assets/yirenzheng.svg" alt="">
+              <!-- <img draggable="false" src="../../../assets/weirenzheng.svg" alt=""> --> 
             </div>
           </div>
           <div class="hospitalMember_content">
@@ -108,7 +108,7 @@ export default {
         this.hospitalSum = res.data.sum.map.totalItemCount
       },res=>{
         if(res.codeMsg){
-          this.$toast(res.codeMsg);
+          // this.$toast(res.codeMsg);
           this.loading = false;
           this.finished = true;
         }
@@ -154,7 +154,6 @@ export default {
       
     },
     parentFn(_value){
-      debugger
       console.log(_value)
       this.hospitalData.axiosData = _value.axiosData;
       this.hospitalData.sorts = _value.sorts;

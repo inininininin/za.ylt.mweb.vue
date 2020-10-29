@@ -1,21 +1,21 @@
 <template>
   <div class="login">
     <div class="nav">
-      <img src="../assets/beijing.png" alt="">
+      <img draggable="false" src="../assets/beijing.png" alt="">
     </div>
     <div class="center">
       <div class="account">
         <div class="account_tel">
-          <img src="../assets/iphone@2x.png" alt="">
+          <img draggable="false" src="../assets/iphone@2x.png" alt="">
           <input type="test" v-model="account.tel" @keyup="account.tel=account.tel.replace(/[^\d]/g,'')" name="account" placeholder="输入手机号" @keyup.enter="loginFn">
-          <img src="../assets/XCopy@2x.png" alt="" v-if="account.tel" @click="account.tel = ''">
+          <img draggable="false" src="../assets/XCopy@2x.png" alt="" v-if="account.tel" @click="account.tel = ''">
         </div>
 
         <div class="account_pwd">
-          <img src="../assets/mima@2x.png" alt="">
+          <img draggable="false" src="../assets/mima@2x.png" alt="">
           <input type="password" v-model="account.pwd" ref="pwd" name="pwd" placeholder="输入密码" @keyup.enter="loginFn">
-          <img src="../assets/XCopy@2x.png" alt="" v-if="account.pwd" @click="account.pwd = ''">
-          <img :src="account.pwdImg" alt="" v-if="account.pwd" @click="eyeFn">
+          <img draggable="false" src="../assets/XCopy@2x.png" alt="" v-if="account.pwd" @click="account.pwd = ''">
+          <img draggable="false" :src="account.pwdImg" alt="" v-if="account.pwd" @click="eyeFn">
         </div>
       </div>
       <div class="agreementClass">
@@ -36,7 +36,7 @@
       <div class="forgotPassword"> 
         <router-link :to="{path:'/forgetPwd'}">
           <span>修改密码</span>
-          <img src="../assets/wenhao@2x.png" alt="">
+          <img draggable="false" src="../assets/wenhao@2x.png" alt="">
         </router-link>       
       </div>
     </div>
@@ -120,19 +120,19 @@ export default {
 }
 .nav{
   width: 100%;
-  height: 207px;
+  /* height: 207px; */
   object-fit: cover;
   overflow: hidden;
 }
 .nav>img{
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
   object-fit: cover;
 }
 .center{
   width: 100%;
-  height: calc(100% - 207px);
-  padding: 48px 33px 0px;
+  /* height: calc(100% - 207px); */
+  padding: 25px 33px 0px;
   box-sizing: border-box
 }
 .account{
@@ -144,7 +144,7 @@ export default {
   line-height: 43px;
   border-radius: 23px;
   border: 1px solid #E5E5E5;
-  margin-bottom: 21px;
+  margin-bottom: 15px;
   position: relative;
   overflow: hidden;
   font-size: 16px;
@@ -293,7 +293,7 @@ export default {
   border-radius: 45px;
 	width: 100%;
   height: 45px;
-	margin-top: 80px;
+	margin-top: 15px;
 	color: #FFFFFF;
 	border: none;
 	font-size: 16px;

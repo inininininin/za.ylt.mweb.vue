@@ -1,7 +1,7 @@
 <template>
     <div class="forgetPwd">
         <topNav>
-            <img slot="returnImg" src="../assets/shape@3x.png" alt=""  @click="$common.backFn" id="navback">
+            <img draggable="false" slot="returnImg" src="../assets/shape@3x.png" alt=""  @click="$common.backFn" id="navback">
         </topNav>
         <div class="center">
             <div class="center_title">
@@ -10,15 +10,15 @@
             </div>
             <div class="center_account">
                 <div class="center_account_tel">
-                    <img src="../assets/iphone@2x.png" alt="">
+                    <img draggable="false" src="../assets/iphone@2x.png" alt="">
                     <input type="test" v-model="account.tel" @keyup="account.tel=account.tel.replace(/[^\d]/g,'')" name="account" placeholder="输入手机号" @keyup.enter="forgetFn">
-                    <img src="../assets/XCopy@2x.png" alt="" v-if="account.tel" @click="account.tel = ''">
+                    <img draggable="false" src="../assets/XCopy@2x.png" alt="" v-if="account.tel" @click="account.tel = ''">
                 </div>
                 <div class="center_account_verification">
                     <div class="center_account_verification_left">
-                        <img src="../assets/yanzhengma@2x.png" alt="">
+                        <img draggable="false" src="../assets/yanzhengma@2x.png" alt="">
                         <input type="test" @keyup="account.verification=account.verification.replace(/[^\d]/g,'')" name="" id="" v-model="account.verification">
-                        <img src="../assets/XCopy@2x.png" alt="" v-if="account.verification" @click="account.verification    = ''">
+                        <img draggable="false" src="../assets/XCopy@2x.png" alt="" v-if="account.verification" @click="account.verification    = ''">
                     </div>
                     <div class="center_account_verification_right" @click="verificationFn">
                         <div v-if="!account.verificationState">获取验证码</div>
@@ -26,10 +26,10 @@
                     </div>
                 </div>
                 <div class="center_account_pwd">
-                    <img src="../assets/mima@2x.png" alt="">
+                    <img draggable="false" src="../assets/mima@2x.png" alt="">
                     <input type="password" v-model="account.pwd" ref="pwd" name="pwd" placeholder="输入密码" @keyup.enter="forgetFn">
-                    <img src="../assets/XCopy@2x.png" alt="" v-if="account.pwd" @click="account.pwd = ''">
-                    <img :src="account.pwdImg" alt="" v-if="account.pwd" @click="eyeFn">
+                    <img draggable="false" src="../assets/XCopy@2x.png" alt="" v-if="account.pwd" @click="account.pwd = ''">
+                    <img draggable="false" :src="account.pwdImg" alt="" v-if="account.pwd" @click="eyeFn">
                 </div>
             </div>
             <button class="loginButtonClass" type="submit" @click="forgetFn">确认</button>

@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 // import Vue from 'vue'
+// import Vant from 'vant';
 import App from './App'
 import router from './router'
 import qs from 'qs';  
@@ -8,14 +9,12 @@ import common from './components/public/common.js'
 import './components/public/common.css'
 import publicRequest from './components/public/publicRequest.js' 
 import registeredModel from './components/public/registeredModel.js' 
-import Vant from 'vant';
 import store from './store'
-import 'vant/lib/index.css';
+// import 'vant/lib/index.css';
 
 registeredModel()
-Vue.use(Vant);
+Vue.use(vant);
 moment.locale('zh-cn');
-debugger
 Vue.prototype.$moment = moment;
 Vue.config.productionTip = false
 Vue.prototype.$publicRequest = publicRequest

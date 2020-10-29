@@ -3,16 +3,16 @@
     <div class="nav">
       <div class="nav_top">
         <div class="nav_top_left">
-          <img src="../../../assets/xiaoxi.png" alt="">
+          <img draggable="false" src="../../../assets/xiaoxi.png" alt="">
           <div>2</div>
         </div>
         <div class="nav_top_center">
-          <img src="../../../assets/sousuo@2x.png" alt="">
+          <img draggable="false" src="../../../assets/sousuo@2x.png" alt="">
           <input type="search" placeholder="搜索病源"> 
         </div>
         <div class="nav_top_right" @click="conditionsData.screeningShow = true">
           <span>筛选</span>
-          <img src="../../../assets/screen.png" alt="">
+          <img draggable="false" src="../../../assets/screen.png" alt="">
         </div>
       </div>
       <div ref="nav_type" class="nav_type">

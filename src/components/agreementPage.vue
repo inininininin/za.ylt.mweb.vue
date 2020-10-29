@@ -1,7 +1,7 @@
 <template>
 	<div class="agreementPage">
 		<topNavBottomBorder>
-			<img slot="returnImg" src="../assets/shape@3x.png" alt=""  @click="$common.backFn" id="navback">
+			<img draggable="false" slot="returnImg" src="../assets/shape@3x.png" alt=""  @click="$common.backFn" id="navback">
 			<h1 slot="title">用户协议与隐私政策</h1>
 		</topNavBottomBorder>
 		<div class="center" ref='agreementRef' >

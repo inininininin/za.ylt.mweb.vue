@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import router from '../../router'
 import store from '../../store'
 import publicRequest from './publicRequest.js' 
@@ -43,7 +42,27 @@ function loginRefreshFn(checkState,successFunction,failFunciton){
 function backFn(){
   router.back()
 }
+var ws=null,embed=null;
+// H5 plus事件处理
+// function plusReady(){
+//   alert('plusReady')
+// 	ws=plus.webview.currentWebview();
+//   embed=plus.webview.create('http://m.weibo.cn/u/3196963860', '', {top:'46px',bottom:'0px'});
+//   alert(embed)
+// 	embed.show();
+// }
+// if(window.plus){
+//   alert(window.plus)
+// 	plusReady();
+// }else{
+// 	document.addEventListener('plusready', plusReady, false);
+// }
+// 重新加载Webview窗口显示的HTML页面
+function reloadWebview() {
+	// embed.reload(true);
+}
 export default {
   loginRefreshFn,
-  backFn
+  backFn,
+  reloadWebview
 };

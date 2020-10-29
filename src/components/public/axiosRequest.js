@@ -1,7 +1,5 @@
 import axios from 'axios'
-import Vue from 'vue';
 import qs from 'qs';
-let vue = new Vue();
 let request = {
     public_requests(type,url,data,dataType,header,successFunction,failFunciton,errFunction){
         return new Promise(()=>{

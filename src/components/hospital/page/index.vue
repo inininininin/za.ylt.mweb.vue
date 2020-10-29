@@ -2,8 +2,8 @@
   <div class="index">
     <div class="title">
       <h3>— 医院端 —</h3>
+      <button @click="$common.reloadWebview">ssss</button>
     </div>
-    
     <div class="content" style="height: calc(100% - 50px);">
       <div class="shufflingNav">
         <div style="height:42.85px"></div> 
@@ -11,7 +11,7 @@
           <van-swipe class="shuffling_nav_banner" :autoplay="300000" indicator-color="white">
             <van-swipe-item v-for="(item,inx) in bannerList" :key="inx">
               <div class="shuffling_nav_banner_imgBox">
-                <img :src="item.cover" alt="">
+                <img draggable="false" :src="item.cover" alt="">
               </div>
             </van-swipe-item>
           </van-swipe>
@@ -20,14 +20,14 @@
       <div class="typeNav">
         <ul>
           <li v-for="(typeItem,inx) in typeNavList" :key="inx" @click="typeRouterFn(typeItem.routerUrl)">
-            <img :src="typeItem.imgUrl" alt="">
+            <img draggable="false" :src="typeItem.imgUrl" alt="">
             <p>{{typeItem.name}}</p>
           </li>
         </ul>
       </div>
       <div class="operation">
         <div class="operationTitle">
-          <img src="../../../assets/CombinedShape@2x.png" alt="">
+          <img draggable="false" src="../../../assets/CombinedShape@2x.png" alt="">
           <h4>运营精选</h4>
         </div>
         <ul>
@@ -35,11 +35,11 @@
             <div class="operationTitle_content" :style="{width:item.cover?'calc(100% - 135px)':'100%'}">
               <p class="line-2">{{item.title}}</p>
               <div>
-                <img src="../../../assets/time@2x.png" alt="">
-                <span>{{item.addTime}}</span>
+                <img draggable="false" src="../../../assets/time@2x.png" alt="">
+                <span>{{item.addTime? $moment(item.addTime).format('YYYY-MM-DD HH:mm'):''}}</span>
               </div>
             </div>
-            <img :src="item.cover" alt="">
+            <img draggable="false" :src="item.cover" alt="">
           </li>
         </ul>
       </div>
@@ -286,7 +286,4 @@ export default {
   color: #999999;
   display: inline-block;
 }
-
-
-
 </style>

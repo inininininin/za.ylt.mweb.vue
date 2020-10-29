@@ -2,7 +2,7 @@
     <div class="addClinic">
         <div class="mandatory">
             <div class="mandatory_title">
-                <img src="../../../assets/bitian@2x.png" alt="">
+                <img draggable="false" src="../../../assets/bitian@2x.png" alt="">
                 <span>必填项</span>
             </div>
             <div class="mandatory_form">
@@ -22,7 +22,7 @@
         </div>
         <div class="optional">
             <div class="optional_title">
-                <img src="../../../assets/xuantian@2x.png" alt="">
+                <img draggable="false" src="../../../assets/xuantian@2x.png" alt="">
                 <span>选填项</span>
             </div>
             <div class="optional_form">
