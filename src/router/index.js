@@ -58,6 +58,13 @@ const mainRoutes = [
         component: _import( 'hospital/page/index'),
         meta: {auth:true,indexHide:true},
       },
+      {
+        path: 'user',
+        name: 'user',
+        component: _import( 'hospital/page/user'),
+        meta: {auth:true,indexHide:true},
+      },
+      
     ]
   },
   {

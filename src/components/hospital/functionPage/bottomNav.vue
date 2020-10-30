@@ -26,7 +26,7 @@
                     :src="props.active ? nav[2].inactive : nav[2].active"
                 >
             </van-tabbar-item>
-            <van-tabbar-item replace :to="{path:'',query:{time: new Date().getTime().toString()}}">
+            <van-tabbar-item replace :to="{path:'/hospital/user',query:{time: new Date().getTime().toString()}}">
                 <span>我的</span>
                 <img draggable="false"
                     slot="icon"

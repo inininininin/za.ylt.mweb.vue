@@ -2,7 +2,7 @@
   <div class="index">
     <div class="title">
       <h3>— 医院端 —</h3>
-      <button @click="$common.reloadWebview">ssss</button>
+      <!-- <button @click="$common.reloadWebview">ssss</button> -->
     </div>
     <div class="content" style="height: calc(100% - 50px);">
       <div class="shufflingNav">
@@ -44,9 +44,7 @@
         </ul>
       </div>
     </div>
-    <bottomNav>
-      
-    </bottomNav>
+    <bottomNav></bottomNav>
   </div>
 </template>
 
