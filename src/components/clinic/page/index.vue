@@ -160,6 +160,7 @@ export default {
   background: url("../../../assets/background.png") no-repeat;
   background-size: 100% 100%;
   position: fixed;
+  box-shadow: rgba(217, 211, 211, 0.5) 0px 1px 2px 0px;
   top: 0;
   z-index: 99;
 }

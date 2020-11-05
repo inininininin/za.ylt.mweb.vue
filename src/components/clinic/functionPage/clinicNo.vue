@@ -36,7 +36,7 @@ export default {
             personnelList:[],
             page:1,
             pushTimeStart:'',
-            loading: false,
+            loading: true,
             finished: false,
             pushTimeEnd:'',
             hospitalConfirmTimeStart:'',

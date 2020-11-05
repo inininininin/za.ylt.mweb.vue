@@ -10,6 +10,8 @@ import './components/public/common.css'
 import publicRequest from './components/public/publicRequest.js' 
 import registeredModel from './components/public/registeredModel.js' 
 import store from './store'
+import axios from 'axios'
+Vue.prototype.$axios = axios
 // import 'vant/lib/index.css';
 
 registeredModel()
@@ -25,9 +27,14 @@ Vue.prototype.$store = store
 
 
 /* eslint-disable no-new */
+// new Vue({
+//   el: '#app',
+//   router,
+//   components: { App },
+//   template: '<App/>'
+// })  
 new Vue({
-  el: '#app',
   router,
-  components: { App },
-  template: '<App/>'
-})  
+  store,
+  render: h => h(App)
+}).$mount('#app')

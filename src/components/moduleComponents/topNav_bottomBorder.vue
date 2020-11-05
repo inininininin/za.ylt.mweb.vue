@@ -37,6 +37,7 @@ export default {
 	z-index: 999;
 	background-color: #FFFFFF;
 	border-bottom: 1px solid #efecec;
+	box-shadow: rgba(217, 211, 211, 0.5) 0px 1px 2px 0px;
 }
 .zhangwei{
 	width: 100%;

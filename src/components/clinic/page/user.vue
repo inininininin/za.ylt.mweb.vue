@@ -29,11 +29,15 @@ export default {
         return{
             chooseOptions:[
                 {
-                    name:'任务管理',
+                    name:'任务中心',
                     methods:''
                 },
                 {
-                    name:'兑换管理',
+                    name:'积分兑换',
+                    methods:''
+                },
+                {
+                    name:'集采',
                     methods:''
                 },
                 {
@@ -41,11 +45,7 @@ export default {
                     methods:''
                 },
                 {
-                    name:'集采积分',
-                    methods:''
-                },
-                {
-                    name:'推广渠道人',
+                    name:'消息',
                     methods:''
                 },
                 {
@@ -77,24 +77,24 @@ export default {
         },
         optionsFn(_name){
             switch(_name){
-                case '任务管理':
+                case '任务中心':
                     this.$toast('正在开发中')
                     break;
-                case '兑换管理':
+                case '积分兑换':
+                    this.$toast('正在开发中')
+                    break;
+                case '集采':
                     this.$toast('正在开发中')
                     break;
                 case '集采订单':
                     this.$toast('正在开发中')
                     break;
-                case '集采积分':
-                    this.$toast('正在开发中')
-                    break;
-                case '推广渠道人':
+                case '消息':
                     this.$toast('正在开发中')
                     break;
                 case '退出登录':
                     this.$dialog.confirm({
-                        message: '是否确定退出医院端',
+                        message: '是否确定退出门诊端',
                     })
                     .then( ()=>{
                         this.$common.loginOutFn()

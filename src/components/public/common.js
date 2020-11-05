@@ -3,6 +3,16 @@ import store from '../../store'
 import publicRequest from './publicRequest.js' 
 
 let vue = new Vue();
+function loginOutFn(){
+  publicRequest.getLoginoutData(res=>{
+    // router.replace({path:'/'})
+    location.href=location.pathname
+  },res=>{
+    if(res.codeMsg){
+      this.$toast(res.codeMsg);
+    }
+  })
+}
 function loginRefreshFn(checkState,successFunction,failFunciton){
   publicRequest.getLoginRefreshData(res => {
     store.state.user.loginRefreshData = res.data
@@ -64,5 +74,6 @@ function reloadWebview() {
 export default {
   loginRefreshFn,
   backFn,
-  reloadWebview
+  reloadWebview,
+  loginOutFn
 };

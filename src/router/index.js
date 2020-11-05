@@ -56,15 +56,22 @@ const mainRoutes = [
         path: 'index',
         name: 'index',
         component: _import( 'hospital/page/index'),
-        meta: {auth:true,indexHide:true},
+      },
+      {
+        path: 'clinic',
+        name: 'clinic',
+        component: _import( 'hospital/page/clinic'),
+      },
+      {
+        path: 'gene',
+        name: 'gene',
+        component: _import( 'hospital/page/gene'),
       },
       {
         path: 'user',
         name: 'user',
         component: _import( 'hospital/page/user'),
-        meta: {auth:true,indexHide:true},
       },
-      
     ]
   },
   {
@@ -78,7 +85,16 @@ const mainRoutes = [
         path: 'index',
         name: 'index',
         component: _import( 'clinic/page/index'),
-        meta: {auth:true,indexHide:true},
+      },
+      {
+        path: 'hospital',
+        name: 'hospital',
+        component: _import( 'clinic/page/hospital'),
+      },
+      {
+        path: 'user',
+        name: 'user',
+        component: _import( 'clinic/page/user'),
       },
     ]
   },
@@ -93,7 +109,11 @@ const mainRoutes = [
         path: 'index',
         name: 'index',
         component: _import( 'operating/page/index'),
-        meta: {auth:true,indexHide:true},
+      },
+      {
+        path: 'user',
+        name: 'user',
+        component: _import( 'operating/page/user'),
       },
     ]
   },

@@ -13,7 +13,18 @@ const Coms = [
         name: "topNavSearchScreening",
         component: () =>
             import ('@/components/moduleComponents/topNav_searchScreening')
+    },
+    {
+        name: "topNavTypeChoose",
+        component: () =>
+            import ('@/components/moduleComponents/topNav_typeChoose')
+    },
+    {
+        name: "moduleList",
+        component: () =>
+            import ('@/components/moduleComponents/moduleList')
     }
+    
 ]
 
 const vueComs = () => {

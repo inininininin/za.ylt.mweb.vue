@@ -1,4 +1,5 @@
 import axiosRequest from './axiosRequest.js'
+import qs from 'qs';
 //获取用户协议接口
 function getAgreementData(successFunction){
     axiosRequest.request.public_requests("get","/oss/page/user-protocol.html",'',false,'application/x-www-form-urlencoded',res=>{
@@ -39,7 +40,24 @@ function getLoginRefreshData(successFunction,failFunciton){
         failFunciton(res)
     },()=>{})
 }
-
+//账号退出登录
+function getLoginoutData(successFunction,failFunciton){
+    axiosRequest.request.public_requests("post","/ylt/logout",'',true,'application/x-www-form-urlencoded',res=>{
+        successFunction(res)
+    },res=>{
+        failFunciton(res)
+    },()=>{})
+}
+//获取文章数据
+function getArticleData(successFunction,failFunciton,_data){
+    axiosRequest.request.public_requests("get","/ylt/c2/article/items?"+qs.stringify(_data),'',true,'application/x-www-form-urlencoded',
+    res=>{
+        successFunction(res)
+    },
+    res =>{
+        failFunciton(res)
+    },()=>{})
+}
 /*医院端*/
 //获取广告图片及其路径数据
 function getAdsData(successFunction,failFunciton){
@@ -51,9 +69,40 @@ function getAdsData(successFunction,failFunciton){
         failFunciton(res)
     },()=>{})
 }
-//获取文章数据
-function getArticleData(successFunction,failFunciton,_data){
-    axiosRequest.request.public_requests("get","/ylt/c2/article/items",_data,true,'application/x-www-form-urlencoded',
+
+//获取门诊列表数据
+function getClinicListData(successFunction,failFunciton,_data){
+    axiosRequest.request.public_requests("get","/ylt/hospital/admin/hospital-clinics?"+qs.stringify(_data),'',true,'application/x-www-form-urlencoded',
+    res=>{
+        successFunction(res)
+    },
+    res =>{
+        failFunciton(res)
+    },()=>{})
+}
+//获取门诊列表总数
+function getClinicSumData(successFunction,failFunciton){
+    axiosRequest.request.public_requests("get","/ylt/hospital/admin/hospital-clinics-sum",'',true,'application/x-www-form-urlencoded',
+    res=>{
+        successFunction(res)
+    },
+    res =>{
+        failFunciton(res)
+    },()=>{})
+}
+//获取推送通知总数
+function getPatientPushSumData(successFunction,failFunciton,_data){
+    axiosRequest.request.public_requests("post","/ylt/c2/patient/newpatientcount",_data,true,'application/x-www-form-urlencoded',
+    res=>{
+        successFunction(res)
+    },
+    res =>{
+        failFunciton(res)
+    },()=>{})
+}
+//获取基因检测列表数据
+function getGeneListData(successFunction,failFunciton,_data){
+    axiosRequest.request.public_requests("post","/ylt/client2/geneTest/samplePacks",_data,true,'application/x-www-form-urlencoded',
     res=>{
         successFunction(res)
     },
@@ -105,16 +154,28 @@ export default {
     getLoginData,
     //获取账号登录数据
     getLoginRefreshData,
-    
-    /*医院端*/
-    //获取广告图片及其路径
-    getAdsData,
+    //账号退出登录
+    getLoginoutData,
+    //获取基因检测列表数据
+    getGeneListData,
     //获取文章数据
     getArticleData,
+
+
+    /*医院端*/
+    //获取广告图片及其路径
+    getAdsData,    
+    //获取门诊列表数据
+    getClinicListData,
+    //获取门诊列表总数
+    getClinicSumData,
+    //获取推送通知总数
+    getPatientPushSumData,
 
     /*门诊端*/
     //获取病源列表
     getPathogenicData,
+    //获取文章列表数据
 
     /*经理端*/
     //获取医院列表

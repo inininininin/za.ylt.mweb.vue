@@ -182,6 +182,7 @@ export default {
   background: #f5f5f5;
   z-index: 9;
   position: fixed;
+  box-shadow: rgba(217, 211, 211, 0.5) 0px 1px 2px 0px;
   top: 0;
   height: 99px;
 }

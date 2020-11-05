@@ -25,12 +25,16 @@
           </li>
         </ul>
       </div>
-      <div class="operation">
-        <div class="operationTitle">
-          <img draggable="false" src="../../../assets/CombinedShape@2x.png" alt="">
-          <h4>运营精选</h4>
-        </div>
-        <ul>
+      <moduleList>
+        <img slot="operationTitle_left" draggable="false" src="../../../assets/CombinedShape@2x.png" alt="">
+        <h4 slot="operationTitle_left">运营精选</h4>
+        <van-list
+          slot="ul"
+          v-model="loading"
+          :finished="finished"
+          finished-text="没有更多了"
+          @load="nextPage"
+          >
           <li v-for="(item,inx) in articleList" :key="inx">
             <div class="operationTitle_content" :style="{width:item.cover?'calc(100% - 135px)':'100%'}">
               <p class="line-2">{{item.title}}</p>
@@ -41,8 +45,9 @@
             </div>
             <img draggable="false" :src="item.cover" alt="">
           </li>
-        </ul>
-      </div>
+        </van-list>
+      </moduleList>
+      
     </div>
     <bottomNav></bottomNav>
   </div>
@@ -66,12 +71,14 @@ export default {
         {name:'医院活动',imgUrl:require('../../../assets/yiyuanhuodong@2x.png'),routerUrl:''},
         {name:'其他项目',imgUrl:require('../../../assets/qita@2x.png'),routerUrl:''},
       ],
-      articleList:[]
+      articleList:[],
+      loading: true,
+      finished: false,
+      page:1
     }
   },
   activated(){
     if(this.query != JSON.stringify(this.$route.query)){
-      Object.assign(this.$data, this.$options.data());
       this.start()
     }
   },
@@ -80,6 +87,7 @@ export default {
   },
   methods:{
     start(){
+      Object.assign(this.$data, this.$options.data());
       this.query = JSON.stringify(this.$route.query);
       this.$common.loginRefreshFn(true,()=>{
         this.getData()
@@ -96,16 +104,29 @@ export default {
           this.$toast(res.codeMsg);
         }
       })
+      this.getArticle();
+    },
+    getArticle(){
       this.$publicRequest.getArticleData(res=>{
-        this.articleList = res.data.items
+        if(res.data.items.length>0){
+          for(let i in res.data.items)
+          this.articleList.push(res.data.items[i])
+        }
+        this.loading = false;
+        if(res.data.items.length != 15){
+          this.finished = true;
+        }
         // console.log(res)
       },res=>{
         if(res.codeMsg){
           this.$toast(res.codeMsg);
+          this.loading = false;
+          this.finished = true;
         }
       },{
-          pn: 1,
-          ps: 10,
+          pn: this.page,
+          hospitalId: this.$store.state.user.loginRefreshData.hospitalId,
+          ps: 15,
           sorts: 'addTime',
           orders: 'desc',
       })
@@ -116,6 +137,10 @@ export default {
       }else{
         this.$toast('正在开发中')
       }
+    },
+    nextPage(){
+      this.page++
+      this.getArticle()
     }
   }
 }
@@ -211,77 +236,5 @@ export default {
 .typeNav>ul>li:nth-child(5) p,.typeNav>ul>li:nth-child(6) p,.typeNav>ul>li:nth-child(7) p.typeNav>ul>li:nth-child(8) p{
   margin-block-end:0;
 }
-.operation{
-  height: 100%;
-  width: 100%;
-  padding: 0px 16px;
-  box-sizing: border-box;
-}
-.operationTitle{
-  width: 100%;
-  height: 24px;
-  line-height: 25px;
-  border-top: 1px solid #E5E5E5;
-  padding: 20px 0px 8px;
-}
-.operationTitle>img{
-  width: 18px;
-  height: 21.5px;
-  display: inline-block;
-  float: left;
-}
-.operationTitle>h4{
-  font-size: 17px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  display: inline-block;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  margin-left: 12px;
-}
-.operation>ul{
-  width: 100%;
-  height: 97.5px;
-}
-.operation>ul>li{
-  height: 109px;
-  border-bottom: 1px solid #D8D8D8;
-  padding: 12px 0px;
-  box-sizing: border-box;
-}
-.operation>ul>li>img{
-  width: 108px;
-  height: 85px;
-  float: right;
-  object-fit: cover;
-}
-.operationTitle_content{
-  height: 100%;
-  width: calc(100% - 135px);
-  display: inline-block;
-  position: relative;
-}
-.operationTitle_content>p{
-  font-size: 16px;
-  margin-block-start: 0px;
-  margin-block-end: 0px;
-}
-.operationTitle_content>div{
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 16.5px;
-  line-height: 16.5px
-}
-.operationTitle_content>div>img{
-  height: 11px;
-  width: 11px;
-  object-fit: cover;
-  /* float: left; */
-  display: inline-block;
-}
-.operationTitle_content>div>span{
-  color: #999999;
-  display: inline-block;
-}
+
 </style>

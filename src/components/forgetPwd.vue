@@ -1,7 +1,7 @@
 <template>
     <div class="forgetPwd">
         <topNav>
-            <img draggable="false" slot="returnImg" src="../assets/shape@3x.png" alt=""  @click="$common.backFn" id="navback">
+            <img draggable="false" slot="leftImg" src="../assets/shape@3x.png" alt=""  @click="$common.backFn" id="navback">
         </topNav>
         <div class="center">
             <div class="center_title">
@@ -148,7 +148,7 @@ export default {
 }
 .center_account{
     width: 100%;
-    padding: 78px 3px 80px 3px;
+    padding: 20px 3px 38px 3px;
     box-sizing: border-box;
 }
 .center_account_tel,.center_account_verification,.center_account_pwd{

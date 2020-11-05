@@ -9,7 +9,7 @@
                     :src="props.active ? nav[0].inactive : nav[0].active"
                 />
             </van-tabbar-item>
-            <van-tabbar-item replace :to="{path:'',query:{time: new Date().getTime().toString()}}">
+            <van-tabbar-item replace :to="{path:'/clinic/hospital',query:{time: new Date().getTime().toString()}}">
                 <img draggable="false"
                     slot="icon"
                     slot-scope="props"
@@ -26,7 +26,7 @@
                     :src="props.active ? nav[2].inactive : nav[2].active"
                 >
             </van-tabbar-item>
-            <van-tabbar-item replace :to="{path:'',query:{time: new Date().getTime().toString()}}">
+            <van-tabbar-item replace :to="{path:'/clinic/user',query:{time: new Date().getTime().toString()}}">
                 <span>我的</span>
                 <img draggable="false"
                     slot="icon"

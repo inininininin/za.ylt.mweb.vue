@@ -9,7 +9,7 @@
                     :src="props.active ? nav[0].inactive : nav[0].active"
                 />
             </van-tabbar-item>
-            <van-tabbar-item replace :to="{path:'',query:{time: new Date().getTime().toString()}}">
+            <van-tabbar-item replace :to="{path:'/hospital/clinic',query:{time: new Date().getTime().toString()}}">
                 <img draggable="false"
                     slot="icon"
                     slot-scope="props"
@@ -18,7 +18,7 @@
                 <span>门诊</span>
             </van-tabbar-item>
             <!-- /hospital/hospital_gene -->
-            <van-tabbar-item replace :to="{path:'',query:{time: new Date().getTime().toString()}}">
+            <van-tabbar-item replace :to="{path:'/hospital/gene',query:{time: new Date().getTime().toString()}}">
                 <span>基因</span>
                 <img draggable="false"
                     slot="icon"

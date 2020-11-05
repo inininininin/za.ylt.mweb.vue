@@ -18,7 +18,7 @@
                 <span>门诊</span>
             </van-tabbar-item>
             <!-- /hospital/hospital_gene -->
-            <van-tabbar-item replace :to="{path:'',query:{time: new Date().getTime().toString()}}">
+            <van-tabbar-item replace :to="{path:'/operating/user',query:{time: new Date().getTime().toString()}}">
                 <span>我的</span>
                 <img draggable="false"
                     slot="icon"
@@ -50,7 +50,8 @@ export default {
                 },
             ]
         }
-    }
+    },
+    
 }
 </script>
 <style scoped>

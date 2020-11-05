@@ -6,8 +6,8 @@
             <span slot="navLeft">已认证</span>
             <h3 slot="navCenter" class="line-1">{{$store.state.user.loginRefreshData? $store.state.user.loginRefreshData.hospitalName:''}}</h3>
             <p slot="navCenter" class="line-1">账号：{{$store.state.user.loginRefreshData? $store.state.user.loginRefreshData.account:''}}</p>
-            <span slot="navRight">营业执照</span>
-            <img slot="navRight" draggable="false" src="../../../assets/ChevronCopy2@2x.png" alt="">
+            <!-- <span slot="navRight">营业执照</span> -->
+            <!-- <img slot="navRight" draggable="false" src="../../../assets/ChevronCopy2@2x.png" alt=""> -->
             <li slot="chooseOptions" v-for="(item,inx) in chooseOptions" :key="inx" @click="optionsFn(item.name)">
                 <div class="chooseOptions_left">
                     <h4>{{item.name}}</h4>
@@ -29,23 +29,7 @@ export default {
         return{
             chooseOptions:[
                 {
-                    name:'任务管理',
-                    methods:''
-                },
-                {
-                    name:'兑换管理',
-                    methods:''
-                },
-                {
-                    name:'集采订单',
-                    methods:''
-                },
-                {
-                    name:'集采积分',
-                    methods:''
-                },
-                {
-                    name:'推广渠道人',
+                    name:'账号与安全',
                     methods:''
                 },
                 {
@@ -77,24 +61,12 @@ export default {
         },
         optionsFn(_name){
             switch(_name){
-                case '任务管理':
-                    this.$toast('正在开发中')
-                    break;
-                case '兑换管理':
-                    this.$toast('正在开发中')
-                    break;
-                case '集采订单':
-                    this.$toast('正在开发中')
-                    break;
-                case '集采积分':
-                    this.$toast('正在开发中')
-                    break;
-                case '推广渠道人':
+                case '账号与安全':
                     this.$toast('正在开发中')
                     break;
                 case '退出登录':
                     this.$dialog.confirm({
-                        message: '是否确定退出医院端',
+                        message: '是否确定退出经理端',
                     })
                     .then( ()=>{
                         this.$common.loginOutFn()
