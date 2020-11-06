@@ -2,9 +2,9 @@
     <div class="clinic">
         <topNavTypeChoose :sum="sum"></topNavTypeChoose>
         <div style="height:197px"></div>
-        <hospitalList style="height: calc(100% - 247px);">
+        <clinicList style="height: calc(100% - 247px);">
             <van-list
-            slot="hospitalList"
+            slot="clinicList"
             v-model="loading"
             :finished="finished"
             finished-text="没有更多了"
@@ -16,13 +16,12 @@
                     <button>{{item.patientCount}}</button>
                 </li>
             </van-list>
-        </hospitalList>
+        </clinicList>
         <bottomNav></bottomNav> 
     </div>
 </template>
 <script>
 import bottomNav from '../functionPage/bottomNav'
-import hospitalList from '../functionPage/hospitalList'
 export default {
     name:'clinic',
     data(){
@@ -48,7 +47,8 @@ export default {
     //     }
     // },
     components:{
-        bottomNav,hospitalList
+        bottomNav,
+        // hospitalList
     },
     activated(){    
         if(this.query != JSON.stringify(this.$route.query)){

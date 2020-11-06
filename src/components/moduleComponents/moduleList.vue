@@ -3,14 +3,29 @@
         <div class="operation">
             <div class="operationTitle" :style="{'border-top':typeValue=='hospital'? '1px solid #E5E5E5':'none'}">
                 <div class="operationTitle_left">
-                    <slot name="operationTitle_left"></slot>
+                    <slot name="operationTitle_left">
+                      <!-- <img draggable="false" src="../../assets/CombinedShape@2x.png" alt=""> -->
+                      <!-- <h4 >运营精选</h4> -->
+                    </slot>
                 </div>
                 <div class="operationTitle_right">
                 </div>
                 
             </div>
             <ul>
-                <slot name="ul"></slot>
+                <slot name="ul">
+                  <!-- <li v-for="(item,inx) in articleList" :key="inx">
+                    <div class="operationTitle_content" :style="{width:item.cover?'calc(100% - 135px)':'100%'}">
+                    <p class="line-2">{{item.title}}</p>
+                    <div>
+                        <img draggable="false" src="../../assets/time@2x.png" alt="">
+                        <span>{{item.addTime? $moment(item.addTime).format('YYYY-MM-DD HH:mm'):''}}</span>
+                    </div>
+                    </div>
+                    <img draggable="false" :src="item.cover" alt="">
+                  </li> -->
+                </slot>
+                
             </ul>
         </div>
     </div>

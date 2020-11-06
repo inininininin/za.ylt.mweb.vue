@@ -18,7 +18,7 @@
                 <span>医院</span>
             </van-tabbar-item>
             <!-- /hospital/hospital_gene -->
-            <van-tabbar-item replace :to="{path:'',query:{time: new Date().getTime().toString()}}">
+            <van-tabbar-item replace :to="{path:'/clinic/gene',query:{time: new Date().getTime().toString()}}">
                 <span>基因</span>
                 <img draggable="false"
                     slot="icon"

@@ -72,6 +72,12 @@ const mainRoutes = [
         name: 'user',
         component: _import( 'hospital/page/user'),
       },
+      {
+        path: 'channelsClinic',
+        name: 'channelsClinic',
+        component: _import( 'hospital/page/channelsClinic'),
+      },
+      
     ]
   },
   {
@@ -92,6 +98,11 @@ const mainRoutes = [
         component: _import( 'clinic/page/hospital'),
       },
       {
+        path: 'gene',
+        name: 'gene',
+        component: _import( 'clinic/page/gene'),
+      },
+      {
         path: 'user',
         name: 'user',
         component: _import( 'clinic/page/user'),
@@ -109,6 +120,11 @@ const mainRoutes = [
         path: 'index',
         name: 'index',
         component: _import( 'operating/page/index'),
+      },
+      {
+        path: 'clinic',
+        name: 'clinic',
+        component: _import( 'operating/page/clinic'),
       },
       {
         path: 'user',

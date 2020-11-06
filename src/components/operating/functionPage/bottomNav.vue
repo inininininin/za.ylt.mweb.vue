@@ -9,21 +9,13 @@
                     :src="props.active ? nav[0].inactive : nav[0].active"
                 />
             </van-tabbar-item>
-            <van-tabbar-item replace :to="{path:'',query:{time: new Date().getTime().toString()}}">
-                <img draggable="false"
-                    slot="icon"
-                    slot-scope="props"
-                    :src="props.active ? nav[1].inactive : nav[1].active"
-                >
-                <span>门诊</span>
-            </van-tabbar-item>
             <!-- /hospital/hospital_gene -->
             <van-tabbar-item replace :to="{path:'/operating/user',query:{time: new Date().getTime().toString()}}">
                 <span>我的</span>
                 <img draggable="false"
                     slot="icon"
                     slot-scope="props"
-                    :src="props.active ? nav[2].inactive : nav[2].active"
+                    :src="props.active ? nav[1].inactive : nav[1].active"
                 >
             </van-tabbar-item>
         </van-tabbar>
@@ -39,10 +31,6 @@ export default {
                 {
                     active: require('../../../assets/shouye@2x.png'),
                     inactive: require('../../../assets/shouye-blue@2x.png')
-                },
-                {
-                    active: require('../../../assets/Hospital@2x.png'),
-                    inactive: require('../../../assets/Hospital-blue@2x.png')
                 },
                 {
                     active: require('../../../assets/wode@2x.png'),

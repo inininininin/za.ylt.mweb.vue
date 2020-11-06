@@ -1,13 +1,13 @@
 <template>
-    <div class="hospitalList">
+    <div class="clinicList">
         <ul>
-            <slot name = "hospitalList"></slot>
+            <slot name = "clinicList"></slot>
         </ul>
     </div>
 </template>
 <script>
 export default {
-    name:'hospitalList',
+    name:'clinicList',
     data(){
         return{
             
@@ -17,20 +17,20 @@ export default {
 }
 </script>
 <style >
-.hospitalList{
+.clinicList{
     width: 100%;
     
     overflow-y: scroll;
     touch-action: pan-y;
     -webkit-overflow-scrolling: touch;
 }
-.hospitalList>ul{
+.clinicList>ul{
     width: 100%;
     height: 100%;
     padding: 10px;
     box-sizing: border-box;
 }
-.hospitalList>ul li{
+.clinicList>ul li{
     width: calc( 50% - 5px);
     height: 110px;
     background: #ffffff;
@@ -38,20 +38,20 @@ export default {
     margin-bottom: 10px;
     text-align: center;
 }
-.hospitalList>ul li:nth-child(2n){
+.clinicList>ul li:nth-child(2n){
     margin-left: 10px;
 }
-.hospitalList>ul li>h3{
+.clinicList>ul li>h3{
     font-size: 16px;
     margin-block-start: 19px;
     margin-block-end: 0;
 }
-.hospitalList>ul li>p{
+.clinicList>ul li>p{
     margin-block-start: 9px;
     margin-block-end: 9px;
     color: #999999;
 }
-.hospitalList>ul li>button{
+.clinicList>ul li>button{
     width: 90px;
     height: 24px;
     color: #FF951B;

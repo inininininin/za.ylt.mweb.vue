@@ -1,22 +1,22 @@
 <template>
     <div class="searchNav">
         <div class="searchNavBox">
-            <div class="searchLeft">
-                <slot name="search"></slot>
-                <!-- <img draggable="false" src="../../assets/sousuo@2x.png" alt=""> -->
-                <!-- <input type="text" placeholder="搜索门诊" style="background:#f5f5f5"> -->
+            <div class="searchleft">
+                <slot name="searchleft"></slot>
+                <!-- <img draggable="false" src="../../assets/shape@3x.png" alt=""> -->
             </div>
             <div class="searchRight">
-                <slot name="screening"></slot>
-                <!-- <span @click="hospitalData.screeningShow = true">排序</span> -->
-                <!-- <img draggable="false" src="../../../assets/shaixuan.png" alt=""> -->
+                <slot name="searchRight"></slot>
+                <!-- <img draggable="false" src="../../assets/sousuo@2x.png" alt=""> -->
+                <!-- <input type="text" placeholder="搜索门诊"> -->
             </div>
+            
         </div>
         <div class="index_title">
             <div class="index_title_left">
                 <slot name="index_title_left"></slot>
-                <!-- <h3>合作医院</h3> -->
-                <!-- <span> {{hospitalSum}}</span> -->
+                <!-- <h3>合作医院</h3>
+                <span> {{hospitalSum}}</span> -->
             </div>
             <div class="index_title_right">
                 <slot name="index_title_right"></slot>
@@ -46,21 +46,23 @@ export default {
     line-height: 46px;
 }
 .searchNavBox{
-    padding: 0px 16px;
-    box-sizing: border-box;
     font-size: 0px;
+    display: flex;
+    justify-content:space-between;
 }
-.searchLeft,.searchRight{
+.searchRight,.searchRight{
     display: inline-block;
     vertical-align: middle;
-    width: calc(100% - 66px)
+    width: calc(100% - 40px)
 }
-.searchLeft{
+.searchRight{
     height: 34px;
     position: relative;
     margin: 6px 0px;
+    padding-right: 16px;
+    box-sizing: border-box;
 }
-.searchLeft>img{
+.searchRight>img{
     width: 13px;
     height: 15px;
     object-fit: cover;
@@ -70,35 +72,32 @@ export default {
     bottom: 0;
     margin: auto 0px;
 }
-.searchLeft>input{
+.searchRight>input{
     font-size: 15PX;
     height: 34px;
     width: 100%;
-    background: #ffffff;
+    background: #f5f5f5;
     border-radius: 17px;
     border: none;
     padding: 0px 15px 0px 39px;
     box-sizing: border-box;
 }
-.searchRight{
-    width: 66px;
+.searchleft{
+    width: 40px;
     height: 21px;
     line-height: 21px;
     text-align: right;
     margin: 12.5px 0px;
+    text-align: center;
 }
-.searchRight>span{
-    font-size: 15px;
-    position: static;
-    vertical-align: middle;
-}
-.searchRight>img{
-    width: 12px;
-    height: 13px;
+
+.searchleft>img{
+    width: 9px;
+    height: 15px;
     object-fit: cover;
     position: static;
     vertical-align: middle;
-    margin-left: 4px;
+    
 }
 .index_title{
   width: 100%;

@@ -62,7 +62,7 @@ export default {
       query:'',
       bannerList:[],
       typeNavList:[
-        {name:'渠道门诊',imgUrl:require('../../../assets/qudaomenzhen@2x.png'),routerUrl:''},
+        {name:'渠道门诊',imgUrl:require('../../../assets/qudaomenzhen@2x.png'),routerUrl:'/hospital/channelsClinic'},
         {name:'病源管理',imgUrl:require('../../../assets/bingyuanguanli@2x.png'),routerUrl:''},
         {name:'器械集采',imgUrl:require('../../../assets/qixiejicai@2x.png'),routerUrl:''},
         {name:'运营中心',imgUrl:require('../../../assets/yunyingzhongxin@2x.png'),routerUrl:''},
@@ -178,6 +178,7 @@ export default {
   padding-top: 12px;
   padding-bottom: 5.5px;
 }
+
 .content{
   
   /* height: 100%; */

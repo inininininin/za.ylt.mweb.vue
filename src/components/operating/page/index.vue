@@ -6,17 +6,12 @@
         <input slot="search" type="text" placeholder="搜索医院">
         <span slot="screening" @click="hospitalData.screeningShow = true">筛选</span>
         <img draggable="false" slot="screening" src="../../../assets/shaixuan.png" alt="">
+        <h3 slot="index_title_left" >合作医院</h3> -->
+        <span slot="index_title_left" > {{hospitalSum}}</span>
+        <span slot="index_title_right">新增医院</span>
+        <img slot="index_title_right" draggable="false" src="../../../assets/right@2x.png" alt="">
       </topNavSearchScreening>
-      <div class="index_title">
-        <div class="index_title_left">
-          <h3>合作医院</h3>
-          <span> {{hospitalSum}}</span>
-        </div>
-        <div class="index_title_right">
-          <span>新增医院</span>
-          <img draggable="false" src="../../../assets/right@2x.png" alt="">
-        </div>
-      </div>
+      
     </div>
     <div style="height:99px"></div>
 
@@ -186,49 +181,7 @@ export default {
   top: 0;
   height: 99px;
 }
-.index_title{
-  width: 100%;
-  height: 27px;
-  line-height: 27px;
-  font-size: 0px;
-  margin-top: 11px;
-  margin-bottom: 15px;
-  padding: 0px 16px;
-  box-sizing: border-box;
-}
-.index_title_left,.index_title_right{
-  width: 50%;
-  height: 27px;
-  line-height: 27px;
-  display: inline-block;
-  vertical-align: middle;
-}
-.index_title_left>h3{
-  font-size: 19px;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  display: inline-block;
-}
-.index_title_left>span{
-  font-size: 16px;
-  font-weight: bold;
-  display: inline-block;
-  margin-left: 7px;
-}
-.index_title_right{
-  text-align: right;
-}
-.index_title_right>span{
-  font-size: 16px;
-  vertical-align: middle;
-  color: #2B77EF;
-}
-.index_title_right>img{
-  width: 8px;
-  height: 13px;
-  vertical-align: middle;
-  margin-left: 5px;
-}
+
 .hospitalList{
   width: 100%;
   overflow-y: scroll;
