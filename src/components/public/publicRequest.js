@@ -81,8 +81,8 @@ function getClinicListData(successFunction,failFunciton,_data){
     },()=>{})
 }
 //获取门诊列表总数
-function getClinicSumData(successFunction,failFunciton){
-    axiosRequest.request.public_requests("get","/ylt/hospital/admin/hospital-clinics-sum",'',true,'application/x-www-form-urlencoded',
+function getClinicSumData(successFunction,failFunciton,_data){
+    axiosRequest.request.public_requests("get","/ylt/hospital/admin/hospital-clinics-sum?"+qs.stringify(_data),'',true,'application/x-www-form-urlencoded',
     res=>{
         successFunction(res)
     },

@@ -52,7 +52,6 @@ export default {
     },
     activated(){    
         if(this.query != JSON.stringify(this.$route.query)){
-            // console.dir(this.$route)
             this.start()
         }
     },

@@ -63,9 +63,9 @@ export default {
       bannerList:[],
       typeNavList:[
         {name:'渠道门诊',imgUrl:require('../../../assets/qudaomenzhen@2x.png'),routerUrl:'/hospital/channelsClinic'},
-        {name:'病源管理',imgUrl:require('../../../assets/bingyuanguanli@2x.png'),routerUrl:''},
+        {name:'病源管理',imgUrl:require('../../../assets/bingyuanguanli@2x.png'),routerUrl:'/hospital/sourceManagement'},
         {name:'器械集采',imgUrl:require('../../../assets/qixiejicai@2x.png'),routerUrl:''},
-        {name:'运营中心',imgUrl:require('../../../assets/yunyingzhongxin@2x.png'),routerUrl:''},
+        {name:'运营中心',imgUrl:require('../../../assets/yunyingzhongxin@2x.png'),routerUrl:'/hospital/operating'},
         {name:'基因检测',imgUrl:require('../../../assets/jiyinjiance@2x.png'),routerUrl:''},
         {name:'医疗资源',imgUrl:require('../../../assets/yiliaoziyuan@2x.png'),routerUrl:''},
         {name:'医院活动',imgUrl:require('../../../assets/yiyuanhuodong@2x.png'),routerUrl:''},

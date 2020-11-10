@@ -42,8 +42,11 @@ export default {
 <style scoped> 
 .searchNav{
     width: 100%;
-    height: 46px;
+    height: 98px;
     line-height: 46px;
+    position: fixed;
+    top: 0;
+    background: #ffffff;
 }
 .searchNavBox{
     font-size: 0px;
@@ -105,7 +108,7 @@ export default {
   line-height: 27px;
   font-size: 0px;
   margin-top: 11px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   padding: 0px 16px;
   box-sizing: border-box;
 }

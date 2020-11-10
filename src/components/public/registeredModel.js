@@ -30,7 +30,13 @@ const Coms = [
         component: () =>
             import ('@/components/moduleComponents/topNav_typeChoose')
     },
-
+    // 左侧返回，中间输入框，右边按钮，底部带类型导航栏
+    {
+        name: "sourceManagementNav",
+        component: () =>
+            import ('@/components/moduleComponents/sourceManagementNav')
+    },
+    
     /* 列表模板*/
     // 文章列表模板 左侧标题及其时间，右侧图片
     {

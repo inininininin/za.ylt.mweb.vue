@@ -77,6 +77,16 @@ const mainRoutes = [
         name: 'channelsClinic',
         component: _import( 'hospital/page/channelsClinic'),
       },
+      {
+        path: 'sourceManagement',
+        name: 'sourceManagement',
+        component: _import( 'hospital/page/sourceManagement'),
+      },
+      {
+        path: 'operating',
+        name: 'operating',
+        component: _import( 'hospital/page/operating'),
+      },
       
     ]
   },
