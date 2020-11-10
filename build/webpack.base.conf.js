@@ -92,7 +92,7 @@ module.exports = {
   externals: {
     Vue: 'Vue',
     vant:'vant',
-    vuex:'vuex',
+    // vuex:'vuex',
     // 'vue-router': 'VueRouter'
   }
 }
