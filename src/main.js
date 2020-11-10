@@ -9,6 +9,8 @@ import publicRequest from './components/public/publicRequest.js'
 import registeredModel from './components/public/registeredModel.js' 
 import store from './store'
 import axios from 'axios'
+import moment from 'moment'
+
 Vue.prototype.$axios = axios
 /*vat组件导入*/
 //toast
