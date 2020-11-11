@@ -1,4 +1,4 @@
-// import Vue from 'vue'
+import Vue from 'vue'
 import Vuex from 'vuex'
 import common from './modules/common'
 import user from './modules/user'
