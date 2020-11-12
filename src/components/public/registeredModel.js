@@ -1,3 +1,4 @@
+import Vue from 'vue' 
 const Coms = [
     /* 导航栏模板*/
     // 底部有边框的导航栏
