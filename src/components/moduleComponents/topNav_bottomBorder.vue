@@ -11,7 +11,7 @@
 				<slot name="rightNav"></slot>
 			</div>
 		</div>
-		<div style="height:30px"></div>
+		<div style="height:47px;"></div>
 	</div>
     
 </template>

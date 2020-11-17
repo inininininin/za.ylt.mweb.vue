@@ -51,6 +51,12 @@ const Coms = [
         component: () =>
             import ('@/components/moduleComponents/clinicList')
     },
+    // 左侧文字，右侧图片
+    {
+        name: "listImg",
+        component: () =>
+            import ('@/components/moduleComponents/list_img')
+    },
     
     
 ]

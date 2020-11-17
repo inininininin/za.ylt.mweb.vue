@@ -58,6 +58,17 @@ function getArticleData(successFunction,failFunciton,_data){
         failFunciton(res)
     },()=>{})
 }
+//获取基因检测列表数据
+function getGeneListData(successFunction,failFunciton,_data){
+    axiosRequest.request.public_requests("post","/ylt/client2/geneTest/samplePacks",_data,true,'application/x-www-form-urlencoded',
+    res=>{
+        successFunction(res)
+    },
+    res =>{
+        failFunciton(res)
+    },()=>{})
+}
+
 /*医院端*/
 //获取广告图片及其路径数据
 function getAdsData(successFunction,failFunciton){
@@ -100,9 +111,9 @@ function getPatientPushSumData(successFunction,failFunciton,_data){
         failFunciton(res)
     },()=>{})
 }
-//获取基因检测列表数据
-function getGeneListData(successFunction,failFunciton,_data){
-    axiosRequest.request.public_requests("post","/ylt/client2/geneTest/samplePacks",_data,true,'application/x-www-form-urlencoded',
+//获取运营手册父级目录
+function getOperatingManualFatherData(successFunction,failFunciton,_data){
+    axiosRequest.request.public_requests("get","/ylt/operating-manual/items?"+qs.stringify(_data),'',true,'application/x-www-form-urlencoded',
     res=>{
         successFunction(res)
     },
@@ -110,6 +121,17 @@ function getGeneListData(successFunction,failFunciton,_data){
         failFunciton(res)
     },()=>{})
 }
+//获取运营手册子级目录
+function getOperatingManualChildernData(successFunction,failFunciton,_data){
+    axiosRequest.request.public_requests("get","/ylt/operating-manual/sections?"+qs.stringify(_data),'',true,'application/x-www-form-urlencoded',
+    res=>{
+        successFunction(res)
+    },
+    res =>{
+        failFunciton(res)
+    },()=>{})
+}
+
 
 /*门诊端*/
 //获取病源列表
@@ -156,10 +178,11 @@ export default {
     getLoginRefreshData,
     //账号退出登录
     getLoginoutData,
-    //获取基因检测列表数据
-    getGeneListData,
     //获取文章数据
     getArticleData,
+    //获取基因检测列表数据
+    getGeneListData,
+    
 
 
     /*医院端*/
@@ -171,6 +194,10 @@ export default {
     getClinicSumData,
     //获取推送通知总数
     getPatientPushSumData,
+    //获取运营手册父级目录
+    getOperatingManualFatherData,
+    //获取运营手册子级目录
+    getOperatingManualChildernData,
 
     /*门诊端*/
     //获取病源列表

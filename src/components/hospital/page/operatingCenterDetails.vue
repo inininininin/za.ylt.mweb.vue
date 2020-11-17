@@ -1,27 +1,27 @@
 <template>
-    <div class="operating">
+    <div class="operatingCenterDetails">
         <topNavBottomBorder>
             <img draggable="false" slot="returnImg" src="../../../assets/shape@3x.png" alt=""  @click="$common.backFn" id="navback">
-			<h1 slot="title">运营手册</h1>
-            <img draggable="false" slot="rightNav" src="../../../assets/jilu@2x.png" alt="">
+			<h1 slot="title">服务内容</h1>
         </topNavBottomBorder>
+        <div class="content">
+            
+        </div>
     </div>
 </template>
 <script>
 export default {
-    name:'operating',
+    name:'operatingCenterDetails',
     data(){
         return{
 
         }
-    },
-    activited(){
-
-    },
+    }
 }
 </script>
 <style scoped>
-.operating{
+.operatingCenterDetails{
 
 }
+
 </style>

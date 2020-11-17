@@ -4,6 +4,7 @@ import store from '../../store'
 import publicRequest from './publicRequest.js' 
 
 let vue = new Vue();
+// 退出刷新当前页面
 function loginOutFn(){
   publicRequest.getLoginoutData(res=>{
     // router.replace({path:'/'})
@@ -14,6 +15,7 @@ function loginOutFn(){
     }
   })
 }
+// 获取刷新数据
 function loginRefreshFn(checkState,successFunction,failFunciton){
   publicRequest.getLoginRefreshData(res => {
     store.state.user.loginRefreshData = res.data
@@ -50,31 +52,26 @@ function loginRefreshFn(checkState,successFunction,failFunciton){
     }})
   })
 }
+// 返回上一级
 function backFn(){
   router.back()
 }
-var ws=null,embed=null;
-// H5 plus事件处理
-// function plusReady(){
-//   alert('plusReady')
-// 	ws=plus.webview.currentWebview();
-//   embed=plus.webview.create('http://m.weibo.cn/u/3196963860', '', {top:'46px',bottom:'0px'});
-//   alert(embed)
-// 	embed.show();
-// }
-// if(window.plus){
-//   alert(window.plus)
-// 	plusReady();
-// }else{
-// 	document.addEventListener('plusready', plusReady, false);
-// }
-// 重新加载Webview窗口显示的HTML页面
-function reloadWebview() {
-	// embed.reload(true);
+// 未开通页面进行提示
+function typeRouterFn(_value,_query){
+  if(_value){
+    debugger
+      router.push({path : _value,time: new Date().getTime().toString(),query:_query})
+  }else{
+    vue.$toast('正在开发中')
+  }
 }
 export default {
+  // 获取刷新数据
   loginRefreshFn,
+  // 返回上一级
   backFn,
-  reloadWebview,
-  loginOutFn
+  // 退出刷新当前页面
+  loginOutFn,
+  // 未开通页面进行提示
+  typeRouterFn
 };

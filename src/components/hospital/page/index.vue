@@ -19,7 +19,7 @@
       </div>
       <div class="typeNav">
         <ul>
-          <li v-for="(typeItem,inx) in typeNavList" :key="inx" @click="typeRouterFn(typeItem.routerUrl)">
+          <li v-for="(typeItem,inx) in typeNavList" :key="inx" @click="$common.typeRouterFn(typeItem.routerUrl,'')">
             <img draggable="false" :src="typeItem.imgUrl" alt="">
             <p>{{typeItem.name}}</p>
           </li>
@@ -65,7 +65,7 @@ export default {
         {name:'渠道门诊',imgUrl:require('../../../assets/qudaomenzhen@2x.png'),routerUrl:'/hospital/channelsClinic'},
         {name:'病源管理',imgUrl:require('../../../assets/bingyuanguanli@2x.png'),routerUrl:'/hospital/sourceManagement'},
         {name:'器械集采',imgUrl:require('../../../assets/qixiejicai@2x.png'),routerUrl:''},
-        {name:'运营中心',imgUrl:require('../../../assets/yunyingzhongxin@2x.png'),routerUrl:'/hospital/operating'},
+        {name:'运营中心',imgUrl:require('../../../assets/yunyingzhongxin@2x.png'),routerUrl:'/hospital/operatingCenter'},
         {name:'基因检测',imgUrl:require('../../../assets/jiyinjiance@2x.png'),routerUrl:''},
         {name:'医疗资源',imgUrl:require('../../../assets/yiliaoziyuan@2x.png'),routerUrl:''},
         {name:'医院活动',imgUrl:require('../../../assets/yiyuanhuodong@2x.png'),routerUrl:''},
@@ -110,7 +110,7 @@ export default {
       this.$publicRequest.getArticleData(res=>{
         if(res.data.items.length>0){
           for(let i in res.data.items)
-          this.articleList.push(res.data.items[i])
+            this.articleList.push(res.data.items[i])
         }
         this.loading = false;
         if(res.data.items.length != 15){
@@ -130,13 +130,6 @@ export default {
           sorts: 'addTime',
           orders: 'desc',
       })
-    },
-    typeRouterFn(_value){
-      if(_value){
-        this.$router.push({path : _value,time: new Date().getTime().toString()})
-      }else{
-        this.$toast('正在开发中')
-      }
     },
     nextPage(){
       this.page++

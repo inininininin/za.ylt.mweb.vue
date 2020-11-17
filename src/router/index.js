@@ -83,9 +83,24 @@ const mainRoutes = [
         component: _import( 'hospital/page/sourceManagement'),
       },
       {
-        path: 'operating',
-        name: 'operating',
-        component: _import( 'hospital/page/operating'),
+        path: 'operatingCenter',
+        name: 'operatingCenter',
+        component: _import( 'hospital/page/operatingCenter'),
+      },
+      {
+        path: 'operatingManual',
+        name: 'operatingManual',
+        component: _import( 'hospital/page/operatingManual'),
+      },
+      {
+        path: 'operatingManualChildern',
+        name: 'operatingManualChildern',
+        component: _import( 'hospital/page/operatingManualChildern'),
+      },
+      {
+        path: 'operatingCenterDetails',
+        name: 'operatingCenterDetails',
+        component: _import( 'hospital/page/operatingCenterDetails'),
       },
       
     ]
@@ -151,7 +166,7 @@ const router = new Router({
 
 router.afterEach((to,from) =>{
   if(to.path == from.path){
-    router.push({path:'/tihuan',query:{query:JSON.stringify(to.query),path:to.path}})
+    router.replace({path:'/tihuan',query:{query:JSON.stringify(to.query),path:to.path}})
   }
 })
 
