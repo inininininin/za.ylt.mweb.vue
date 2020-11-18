@@ -107,12 +107,15 @@ export default {
       this.getArticle();
     },
     getArticle(){
+      this.loading = false;
       this.$publicRequest.getArticleData(res=>{
         if(res.data.items.length>0){
+          if(this.page == 1){
+            this.articleList = []
+          }
           for(let i in res.data.items)
             this.articleList.push(res.data.items[i])
         }
-        this.loading = false;
         if(res.data.items.length != 15){
           this.finished = true;
         }

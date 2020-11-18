@@ -60,7 +60,6 @@ export default {
     components:{
     },
     activated(){
-        // debugger
         //  console.log(this.$route.path);
         // if(this.$route.path.split('/')[1] == 'hospital'){
         //     this.typeValue = true

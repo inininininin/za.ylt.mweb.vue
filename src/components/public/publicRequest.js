@@ -131,7 +131,16 @@ function getOperatingManualChildernData(successFunction,failFunciton,_data){
         failFunciton(res)
     },()=>{})
 }
-
+//获取运营手册服务内容列表
+function serviceContentListData(successFunction,failFunciton,_data){
+    axiosRequest.request.public_requests("get","/ylt/operating-manual/section-tracks?"+qs.stringify(_data),'',true,'application/x-www-form-urlencoded',
+    res=>{
+        successFunction(res)
+    },
+    res =>{
+        failFunciton(res)
+    },()=>{})
+}
 
 /*门诊端*/
 //获取病源列表
@@ -198,6 +207,8 @@ export default {
     getOperatingManualFatherData,
     //获取运营手册子级目录
     getOperatingManualChildernData,
+    //获取运营手册子级目录
+    serviceContentListData,
 
     /*门诊端*/
     //获取病源列表

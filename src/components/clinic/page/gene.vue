@@ -110,12 +110,15 @@ export default {
                 break;
 
             }
+            this.loading = false;
             this.$publicRequest.getGeneListData(res=>{
                 if(res.data.items.length>0){
+                    if(this.page == 1){
+                        this.geneList = []
+                    }
                     for(let i in res.data.items)
                     this.geneList.push(res.data.items[i])
                 }
-                this.loading = false;
                 if(res.data.items.length != 15){
                     this.finished = true;
                 }

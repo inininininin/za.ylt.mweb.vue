@@ -66,12 +66,15 @@ export default {
     getData(){
     },
     getClinicData(){
+      this.loading = false;
       this.$publicRequest.getClinicListData(res=>{
           if(res.data.rows.length>0){
-              for(let i in res.data.rows)
+            if(this.page == 1){
+              this.clinicList = []
+            }
+            for(let i in res.data.rows)
               this.clinicList.push(res.data.rows[i])
           }
-          this.loading = false;
           if(res.data.rows.length != 15){
               this.finished = true;
           }

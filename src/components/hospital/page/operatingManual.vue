@@ -64,14 +64,18 @@ export default {
         
         },
         getFatherData(){
+            this.loading = false;
             this.$publicRequest.getOperatingManualFatherData(res=>{
                 if(res.data.rows.length>0){
+                    if(this.page == 1){
+                        this.operatingManualList = []
+                    }
                     for(let i in res.data.rows){
                         this.operatingManualList.push(res.data.rows[i])
                         this.getChildernData(res.data.rows[i])
                     }
                 }
-                this.loading = false;
+                
                 if(res.data.rows.length != 15){
                     this.finished = true;
                 }

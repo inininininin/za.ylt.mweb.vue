@@ -64,17 +64,14 @@ export default {
         getFatherData(){
             let _data ={}
             console.log(this.$route.query)
-            debugger
             try {
                 if(!this.$route.query.operatingManualSectionId){
-                    debugger
                     _data={
                         operatingManualId: this.$route.query.operatingManualId,
                         pn: this.page,
                         ps: 15  
                     }
                 }else{
-                    debugger
                     _data={
                         operatingManualId: this.$route.query.operatingManualId,
                         upperId: this.$route.query.operatingManualSectionId,
@@ -85,8 +82,12 @@ export default {
             } catch (error) {
                 
             }
+            this.loading = false;
             this.$publicRequest.getOperatingManualChildernData(res=>{
                 if(res.data.rows.length>0){
+                    if(this.page == 1){
+                        this.operatingManualChildernList = []
+                    }
                     for(let i in res.data.rows){
                         this.operatingManualChildernList.push(res.data.rows[i])
                         if(res.data.rows[i].lowerCount){
@@ -99,7 +100,7 @@ export default {
                         }
                     }
                 }
-                this.loading = false;
+                
                 if(res.data.rows.length != 15){
                     this.finished = true;
                 }

@@ -1,5 +1,4 @@
 <template>
-
   <div class="clinic">
     <keep-alive>
       <router-view />

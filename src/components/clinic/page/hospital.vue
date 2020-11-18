@@ -60,21 +60,24 @@ export default {
             },()=>{})
         },
         getData(){
+            this.loading = false;
             this.$publicRequest.getArticleData(res=>{
                 if(res.data.items.length>0){
-                for(let i in res.data.items)
-                this.articleList.push(res.data.items[i])
-                }
-                this.loading = false;
+                    if(this.page == 1){
+                        this.articleList = []
+                    }
+                    for(let i in res.data.items)
+                        this.articleList.push(res.data.items[i])
+                    }
                 if(res.data.items.length != 15){
-                this.finished = true;
+                    this.finished = true;
                 }
                 // console.log(res)
             },res=>{
                 if(res.codeMsg){
-                this.$toast(res.codeMsg);
-                this.loading = false;
-                this.finished = true;
+                    this.$toast(res.codeMsg);
+                    this.loading = false;
+                    this.finished = true;
                 }
             },{
                 pn: this.page,

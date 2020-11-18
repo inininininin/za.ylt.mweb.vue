@@ -58,12 +58,16 @@ export default {
         },
         getData(){
             let _this = this;
+            this.loading = false;
             this.$publicRequest.getPathogenicData(res=>{
+                if(this.page == 1){
+                    this.personnelList = []
+                }
                 if(res.data.items.length>0){
                     for(let i in res.data.items)
                     this.personnelList.push(res.data.items[i])
                 }
-                this.loading = false;
+                
                 if(res.data.items.length != 15){
                     this.finished = true;
                 }

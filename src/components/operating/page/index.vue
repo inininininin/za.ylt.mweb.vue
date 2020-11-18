@@ -91,12 +91,15 @@ export default {
       })
     },
     getData(){
+      this.loading = false;
       this.$publicRequest.getHospitalData(res=>{
         if(res.data.items.length>0){
-            for(let i in res.data.items)
-              this.hospitalList.push(res.data.items[i])
+          if(this.page == 1){
+            this.hospitalList = []
+          }
+          for(let i in res.data.items)
+            this.hospitalList.push(res.data.items[i])
         }
-        this.loading = false;
         if(res.data.items.length != 15){
             this.finished = true;
         } 
@@ -116,12 +119,15 @@ export default {
       })
     },
     getAllData(){
+      this.loading = false;
       this.$publicRequest.getAllHospitalData(res=>{
         if(res.data.items.length>0){
-            for(let i in res.data.items)
-              this.hospitalList.push(res.data.items[i])
+          if(this.page == 1){
+            this.hospitalList = []
+          }
+          for(let i in res.data.items)
+            this.hospitalList.push(res.data.items[i])
         }
-        this.loading = false;
         if(res.data.items.length != 15){
             this.finished = true;
         } 
