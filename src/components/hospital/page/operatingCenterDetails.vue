@@ -35,6 +35,38 @@
                 </van-list>
             </ul>
         </div>
+        <div class="addServiceButton" :class="[!addserviceData.state? 'amplification':'']">
+            <img draggable="false" src="../../../assets/addcopy@2x.png" alt="" @click="addserviceData.state = true">
+        </div>
+        <div class="addService" :class="[addserviceData.state? 'rightMove':'']">
+            <div class="inputBox">
+                <div class="inputBox_left">
+                    <input type="text" v-model="addserviceData.kw">
+                    <img src="../../../assets/XCopy@2x.png" alt="" v-if="addserviceData.kw" @click="addserviceData.kw = ''">
+                </div>
+                <div class="inputBox_right">
+                    <button :style="{'background': addserviceData.kw? '#33f2f2':'#aeffff'}" @click="submitFn">
+                        {{addserviceData.kw? '发送':'关闭'}}
+                        
+                    </button>
+                </div>
+            </div>
+            <div class="functionBox">
+                <img draggable="false" src="../../../assets/photo.png" alt="">
+                <img draggable="false" src="../../../assets/video.png" alt="">
+            </div>
+            
+            <div class="previewBoxScroll" @scroll="scrollFn()">
+                <div v-for="(item,inx) in addserviceData.previewBox" :key="inx" >
+                    <div>
+                        <img :src="item.url" alt="" @mousedown="moveDownFn($event,item)" @mousemove="mousemoveFn" @mouseup="mouseup" draggable="false"> 
+                        
+                    </div>
+                </div>
+                <img :src="addserviceData.nowMoveUrl" alt="" ref="replaceImgRef" v-if='addserviceData.nowMoveIimgShowValue'>
+            </div>
+            
+        </div>
     </div>
 </template>
 <script>
@@ -46,7 +78,20 @@ export default {
             loading: true,
             finished: false,
             page:1,
-            serviceContentList:[]
+            serviceContentList:[],
+            addserviceData:{
+                kw:'',
+                state:false,
+                previewBox:[
+                    {url:require('../../../assets/beijing.png'),show:true},
+                    {url:require('../../../assets/background.png'),show:true},
+                    {url:require('../../../assets/bj.png'),show:true},
+                    {url:require('../../../assets/yiyuanxingxiang@2x.png'),show:true},
+                    {url:require('../../../assets/zhuanjia@2x.png'),show:true},
+                ],
+                nowMoveUrl:'',
+                nowMoveIimgShowValue:false,
+            }
         }
     },
     activated(){
@@ -95,6 +140,41 @@ export default {
         nextPage(){
             this.page++
             this.getData()
+        },
+        submitFn(){
+            if(this.addserviceData.state){
+                if(this.addserviceData.kw){
+                    this.$toast('操作成功')
+                    this.addserviceData.state = false
+                }else{
+                    this.addserviceData.state = false
+                }
+
+            }else{
+                this.$toast('操作失败')
+            }
+        },
+        moveDownFn(_ref,_value){
+            this.addserviceData.nowMoveIimgShowValue = true
+            let _x = _ref.pageX-_ref.offsetX;
+            // let _y = _ref.clientY||pageY;`                                                                                                                                                                                  `                                                                       
+            console.log(_x)
+            console.dir(_ref)
+            // let bodyWidth = document.body.offsetWidth-_x
+            this.addserviceData.nowMoveUrl = _value.url
+            this.$refs.replaceImgRef.style.left = _x+'px'
+            // console.log(_ref)
+            // this.$refs.replaceImgRef._lef
+            // console.log(this.$refs.replaceImgRef.xs)
+        },
+        mousemoveFn(_ref){
+            
+        },
+        mouseup(_ref){
+1
+        },
+        scrollFn(_value){
+            this.addserviceData.nowMoveIimgShowValue = false
         }
     }
 }
@@ -169,8 +249,156 @@ export default {
 }
 .contentBox_LineTwo>p{
     color: #999999;
-    font-size: 14px;
+    font-size: 14px;    
     margin-block-start: 0;
     margin-block-end: 0;
+}
+.addServiceButton{
+    width: 0px;
+    height: 0px;
+    position: fixed;
+    bottom: 42px;
+    right: 40px;
+    z-index: 9;
+    opacity:0;
+    -webkit-transition: all .5s ease;  
+    -moz-transition: all .5s ease;  
+    transition: all .5s ease;
+}
+.addServiceButton>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.amplification{
+    width: 44px;
+    height: 44px;
+    bottom: 20px;
+    right: 18px;
+    opacity:1;
+}
+.addService{
+    width: 100%;
+    height: auto;
+    opacity:0;
+    background: #F5F5F5;
+    position: fixed;
+    right: -100%;
+    bottom: 0;
+    padding: 8px 0px 5px;
+    box-sizing: border-box;
+    -webkit-transition: all .5s ease;  
+    -moz-transition: all .5s ease;  
+    transition: all .5s ease;
+    z-index: 10;
+}
+
+.rightMove{  
+    right: 0px;  
+    opacity: 1;  
+} 
+.inputBox{
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+    box-sizing: border-box;
+}
+.inputBox_left,.inputBox_right{
+    height: 100%;
+}
+.inputBox_left{
+    width: calc(100% - 60px);
+    padding-right: 5px;
+    box-sizing: border-box;
+    position: relative;
+}
+.inputBox_left>img{
+    width: 10px;
+    height: 10px;
+    object-fit: cover;
+    position: absolute;
+    right: 15px;
+    top: 7.5px;
+}
+.inputBox_left>input{
+    width: 100%;
+    height: 23px;
+    border: none;
+    border-radius: 50px;
+    vertical-align: middle;
+    padding: 0px 25px 0px 10px;
+    box-sizing: border-box;
+}
+.inputBox_right{
+    width: 60px;
+    height: 25px;
+    text-align: center;
+}
+.inputBox_right>button{
+    border: none;
+    color: #FFF;
+    font-size: 13px;
+    width: 50px;
+    height: 25px;
+    border-radius: 50px;
+}
+.functionBox{
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    justify-content: left;
+    padding: 7px 5px 10px;
+    box-sizing: border-box;
+}
+.functionBox>img{
+    width: 30px;
+    height: 20px;
+    object-fit: cover;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.previewBox{
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+.previewBoxScroll{
+    width: 100%;
+    height: auto;
+    overflow-x: scroll;
+    justify-content: flex-start;
+    display: flex;
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
+    
+}
+.previewBoxScroll::-webkit-scrollbar {
+    display:none
+}
+.previewBoxScroll>div{
+    height: 90px;
+    width: auto;
+    padding: 1px;
+    box-sizing: border-box;
+    background: #ffffff;
+}
+.previewBoxScroll>img{
+    height: 90px;
+    width: auto;
+    object-fit: cover;
+    position: absolute;
+    left: 0px;
+}
+.previewBoxScroll>div>div{
+    height: 100%;
+    width: auto;
+    background: #e3e3e3;
+}
+.previewBoxScroll>div>div>img{
+    height: 100%;
+    width: auto;
+    object-fit: cover;
 }
 </style>
