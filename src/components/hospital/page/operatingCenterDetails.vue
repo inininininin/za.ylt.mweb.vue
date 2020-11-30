@@ -1,6 +1,6 @@
 <template>
     <div class="operatingCenterDetails">
-        <topNavBottomBorder>
+        <topNavBottomBorder  >
             <img draggable="false" slot="returnImg" src="../../../assets/shape@3x.png" alt=""  @click="$common.backFn" id="navback">
 			<h1 slot="title">服务内容</h1>
         </topNavBottomBorder>
@@ -36,7 +36,7 @@
             </ul>
         </div>
         <div class="addServiceButton" :class="[!addserviceData.state? 'amplification':'']">
-            <img draggable="false" src="../../../assets/addcopy@2x.png" alt="" @click="addserviceData.state = true">
+            <img draggable="false" src="../../../assets/addcopy@2x.png" alt="" @click="addShowFn">
         </div>
         <div class="addService" :class="[addserviceData.state? 'rightMove':'']">
             <div class="inputBox">
@@ -59,7 +59,7 @@
             <div class="previewBoxScroll" @scroll="scrollFn()">
                 <div v-for="(item,inx) in addserviceData.previewBox" :key="inx" >
                     <div>
-                        <img :src="item.url" alt="" @mousedown="moveDownFn($event,item)" @mousemove="mousemoveFn" @mouseup="mouseup" draggable="false"> 
+                        <img :src="item.url" alt="" :style="{'opacity':item.show? '1':'0'}" :ref="'old'+inx" @touchstart="touchstartFn($event,'old'+inx,item)" @touchmove="touchmoveFn($event,'old'+inx,item)" @touchend="touchendFn($event,'old'+inx,item)" draggable="false"> 
                         
                     </div>
                 </div>
@@ -141,40 +141,106 @@ export default {
             this.page++
             this.getData()
         },
+        addShowFn(){
+            this.addserviceData.state = true
+        },
         submitFn(){
             if(this.addserviceData.state){
                 if(this.addserviceData.kw){
                     this.$toast('操作成功')
-                    this.addserviceData.state = false
+                    this.addserviceData.state = false;
                 }else{
-                    this.addserviceData.state = false
+                    this.addserviceData.state = false;
                 }
 
             }else{
                 this.$toast('操作失败')
             }
         },
-        moveDownFn(_ref,_value){
-            this.addserviceData.nowMoveIimgShowValue = true
-            let _x = _ref.pageX-_ref.offsetX;
-            // let _y = _ref.clientY||pageY;`                                                                                                                                                                                  `                                                                       
-            console.log(_x)
-            console.dir(_ref)
-            // let bodyWidth = document.body.offsetWidth-_x
-            this.addserviceData.nowMoveUrl = _value.url
-            this.$refs.replaceImgRef.style.left = _x+'px'
-            // console.log(_ref)
-            // this.$refs.replaceImgRef._lef
-            // console.log(this.$refs.replaceImgRef.xs)
-        },
-        mousemoveFn(_ref){
+        touchstartFn(_event,_ref,_value){
             
+            // console.log('----------touchstartFn----------')
+            // console.log('_event.screenX:'+_event.touches[0].clientX)
+            // console.log(this.$refs[_ref][0].offsetLeft)
+            // console.log('_event.offsetX:'+_event.touches[0].pageX)
+            // console.log('_event.pageX:'+_event.touches[0].screenX)
+            // console.log('_event.pageY:'+_event.touches[0].pageY)
+            // console.log('_event.offsetY:'+_event.touches[0].offsetY)
+            // console.dir(_event.touches[0])
+            // console.log(document.body.clientHeight-_event.offsetY)
+            
+            // this.addserviceData.nowMoveIimgShowValue = true
+            // let _x = _event.touches[0].screenX-_event.touches[0].clientX;
+            // this.addserviceData.nowMoveUrl = _value.url;
+            // for(let i in this.addserviceData.previewBox){
+            //     if(this.addserviceData.previewBox[i].show == false){
+            //         this.addserviceData.previewBox[i].show = true
+            //     }
+            // }
+            // _value.show = false
+            // this.$nextTick(()=>{
+            //     this.$refs.replaceImgRef.style.left = this.$refs[_ref][0].offsetLeft+'px'
+            // })
         },
-        mouseup(_ref){
-1
+        touchmoveFn(_event,_ref,_value){
+            // console.dir(document.body.offsetHeight)
+            console.log('----------touchmoveFn----------')
+            console.dir(_event)
+            console.log('_ref.screenY:'+_event.touches[0].screenX)
+            // console.log('_ref.offsetY:'+_ref.offsetY)
+            // console.log('_ref.pageY:'+_ref.pageY)
+            // this.$refs.replaceImgRef.style.top = _ref.offsetY+'px'
+           if(document.body.offsetHeight - _event.touches[0].pageY>80){
+               this.addserviceData.nowMoveIimgShowValue = true
+                // let _x = _event.touches[0].screenX-_event.touches[0].clientX;
+                this.addserviceData.nowMoveUrl = _value.url;
+                for(let i in this.addserviceData.previewBox){
+                    if(this.addserviceData.previewBox[i].show == false){
+                        this.addserviceData.previewBox[i].show = true
+                    }
+                }
+                _value.show = false
+                this.$nextTick(()=>{                    
+                    this.$refs.replaceImgRef.style.left = this.$refs[_ref][0].screenX +'px'
+                    this.$refs.replaceImgRef.style.bottom = document.body.offsetHeight - _event.touches[0].pageY - 80+'px'
+                
+                })
+            }
+        },
+        touchendFn(_event,_ref,_value){
+            let _num = Math.round(this.$refs.replaceImgRef.style.bottom.replace('px',''))
+            if(_num){
+                if(_num>150){
+                    this.$toast('操作成功')
+                    this.$nextTick(()=>{
+                        this.$refs.replaceImgRef.style.opacity = '1'
+                    })
+                }else{
+                    this.$toast('取消操作')
+                    while(_num != 0 && _num>-1){
+                        this.$nextTick(()=>{
+                            this.$refs.replaceImgRef.style.bottom = _num +'px'
+                        })
+                        _num--
+                    }
+                }
+                
+                for(let i in this.addserviceData.previewBox){
+                    if(this.addserviceData.previewBox[i].show == false){
+                        this.addserviceData.previewBox[i].show = true
+                    }
+                }
+                this.addserviceData.nowMoveIimgShowValue = false
+            }
         },
         scrollFn(_value){
-            this.addserviceData.nowMoveIimgShowValue = false
+            this.addserviceData.nowMoveIimgShowValue = false;
+            this.addserviceData.nowMoveUrl = '';
+            for(let i in this.addserviceData.previewBox){
+                if(this.addserviceData.previewBox[i].show == false){
+                    this.addserviceData.previewBox[i].show = true
+                }
+            }
         }
     }
 }
