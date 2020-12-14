@@ -19,7 +19,7 @@
       </div>
       <div class="typeNav">
         <ul>
-          <li v-for="(typeItem,inx) in typeNavList" :key="inx" @click="$common.typeRouterFn(typeItem.routerUrl,'')">
+          <li v-for="(typeItem,inx) in typeNavList" :key="inx" @click="$common.typeRouterFn(typeItem.routerUrl,{time : new Date().getTime().toString()})">
             <img draggable="false" :src="typeItem.imgUrl" alt="">
             <p>{{typeItem.name}}</p>
           </li>
@@ -47,14 +47,11 @@
           </li>
         </van-list>
       </moduleList>
-      
     </div>
-    <bottomNav></bottomNav>
   </div>
 </template>
 
 <script>
-import bottomNav from '../functionPage/bottomNav'
 export default {
   name: 'index',
   data () {
@@ -81,9 +78,6 @@ export default {
     if(this.query != JSON.stringify(this.$route.query)){
       this.start()
     }
-  },
-  components:{
-    bottomNav
   },
   methods:{
     start(){

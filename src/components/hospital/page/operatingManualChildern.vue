@@ -16,7 +16,7 @@
                         finished-text=""
                         @load="nextPage"
                         >
-                        <li v-for="(item,inx) in operatingManualChildernList" :key="inx" @click="$common.typeRouterFn(item.url,item)">
+                        <li v-for="(item,inx) in operatingManualChildernList" :key="inx" @click="$common.typeRouterFn(item.url,{name:item.name,'operatingManualId':item.operatingManualId,'operatingManualSectionId':item.operatingManualSectionId,upperId:item.upperId,time : new Date().getTime().toString()})">
                             <div class="chooseOptions_left">
                                 <h4>{{item.name}}</h4>
                             </div>
@@ -63,7 +63,7 @@ export default {
         },
         getFatherData(){
             let _data ={}
-            console.log(this.$route.query)
+            // console.log(this.$route.query)
             try {
                 if(!this.$route.query.operatingManualSectionId){
                     _data={
@@ -98,6 +98,7 @@ export default {
                         }else{
                             this.operatingManualChildernList[i].url = '/hospital/operatingCenterDetails'
                         }
+                        // console.log(this.operatingManualChildernList)
                     }
                 }
                 

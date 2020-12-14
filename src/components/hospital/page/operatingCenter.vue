@@ -8,7 +8,7 @@
         <div class="content" style="height:calc(100% - 47px)">
             <ul>
                 <listImg>
-                    <li slot="listImg" v-for="(item,inx) in optionsList" :key="inx" @click="$common.typeRouterFn(item.url,'')">
+                    <li slot="listImg" v-for="(item,inx) in optionsList" :key="inx" @click="$common.typeRouterFn(item.url,{time : new Date().getTime().toString()})">
                         <div class="chooseOptions_left">
                             <h4>{{item.name}}</h4>
                         </div>

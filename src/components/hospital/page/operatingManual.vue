@@ -16,7 +16,7 @@
                         loading-text=""
                         @load="nextPage"
                         >
-                        <li v-for="(item,inx) in operatingManualList" :key="inx" @click="$common.typeRouterFn(item.url,item)">
+                        <li v-for="(item,inx) in operatingManualList" :key="inx" @click="$common.typeRouterFn(item.url,{operatingManualId:item.operatingManualId,name:item.name,time : new Date().getTime().toString()})">
                             <div class="chooseOptions_left">
                                 <h4>{{item.name}}</h4>
                             </div>
@@ -105,10 +105,7 @@ export default {
                     }else{  
                         _value.url='/hospital/operatingCenterDetails'
                     }
-                    // console.log('/*******_value：*******/')
-                    // console.l 1og(_value)
-                    // console.log('/*******this.operatingManualList： *******/')
-                    console.log(this.operatingManualList)
+                    // console.log(this.operatingManualList)
                 }
             },_res=>{
                 if(_res.codeMsg){

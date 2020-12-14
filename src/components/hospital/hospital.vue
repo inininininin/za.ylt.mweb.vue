@@ -1,18 +1,26 @@
 <template>
   <div class="hospital">
-    <keep-alive>
-      <router-view />
-    </keep-alive>
+    <transitions>
+        <keep-alive slot="title">
+          <router-view class="routreView"/>
+        </keep-alive>      
+    </transitions>
+    <bottomNav v-if="$store.state.common.bottomNav"></bottomNav>
   </div>
 </template>
 
 <script>
+import bottomNav from './functionPage/bottomNav'
 export default {
-name: 'hospital',
-data () {
-    return {
-    }
-}
+  name: 'hospital',
+  data () {
+      return {
+      }
+      
+  },
+  components:{
+    bottomNav
+  },
 }
 </script>
 

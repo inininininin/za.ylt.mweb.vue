@@ -47,11 +47,9 @@
                 </van-list>
             </ul>
         </div>
-        <bottomNav></bottomNav>
     </div>
 </template>
 <script>
-import bottomNav from '../functionPage/bottomNav'
 export default {
     name:'gene',
     data(){
@@ -70,7 +68,6 @@ export default {
         }
     },
     components:{
-        bottomNav
     },
     activated(){
         if(this.query != JSON.stringify(this.$route.query)){

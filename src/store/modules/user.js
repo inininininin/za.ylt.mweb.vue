@@ -3,7 +3,8 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state={	
-	loginRefreshData:{}
+	loginRefreshData:{},
+	
 }
 const getters={
 }

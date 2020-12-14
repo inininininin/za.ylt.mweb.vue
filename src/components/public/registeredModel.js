@@ -1,5 +1,12 @@
 import Vue from 'vue' 
 const Coms = [
+    /* 页面过度效果模板*/
+    // 路由跳转左右移动动画效果 
+    {
+        name: "transitions",
+        component: () =>
+            import ('@/components/moduleComponents/transition')
+    },
     /* 导航栏模板*/
     // 底部有边框的导航栏
     {

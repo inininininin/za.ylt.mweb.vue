@@ -17,11 +17,9 @@
                 </li>
             </van-list>
         </clinicList>
-        <bottomNav></bottomNav> 
     </div>
 </template>
 <script>
-import bottomNav from '../functionPage/bottomNav'
 export default {
     name:'clinic',
     data(){
@@ -38,17 +36,7 @@ export default {
             
         }
     },
-    // watch:{
-    //     $route(to,from){
-    //         if(to.path.split('/')[1] == 'hospital'){
-    //             this.typeValue = true
-    //             console.log(to.path);
-    //         }
-    //     }
-    // },
     components:{
-        bottomNav,
-        // hospitalList
     },
     activated(){    
         if(this.query != JSON.stringify(this.$route.query)){

@@ -59,7 +59,7 @@ function backFn(){
 // 未开通页面进行提示
 function typeRouterFn(_value,_query){
   if(_value){
-    router.push({path : _value,time: new Date().getTime().toString(),query:_query})
+    router.push({path : _value,query:_query})
   }else{
     vue.$toast('正在开发中')
   }

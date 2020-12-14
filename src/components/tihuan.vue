@@ -6,14 +6,15 @@
 export default {
 	name: 'tihuan',
 	mounted(){
-		let query = this.getQuery()
-		console.log(this.$route.query.path)
-		this.$router.replace({path:this.$route.query.path,query:query})
+		// debugger
+		// let query = this.getQuery()
+		// console.log(this.$route.query.path)
+		this.$router.replace({path:this.$route.query.path,query:this.$route.query.query})
 	},
 	activated(){
-		let query = this.getQuery()
-		console.log(this.$route.query.path)
-		this.$router.replace({path:this.$route.query.path,query:query})
+		// let query = this.getQuery()
+		// console.log(this.$route.query.path)
+		this.$router.replace({path:this.$route.query.path,query:this.$route.query.query})
 	},
 	methods: {
 		getQuery(){

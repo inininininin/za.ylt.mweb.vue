@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <keep-alive>
-      <router-view/>
-
-    </keep-alive>
+    <transitions>
+      <keep-alive slot="title">
+        <router-view class="routreView"/>
+      </keep-alive>
+    </transitions>
+          
   </div>
 </template>
 

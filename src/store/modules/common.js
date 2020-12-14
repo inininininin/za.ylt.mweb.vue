@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state={
+	transitionName:'',
+	bottomNav:false,
 }
 const getters={
 }

@@ -17,11 +17,9 @@
                 </div>
             </li>
         </userModel>
-        <bottomNav></bottomNav>
     </div>
 </template>
 <script>
-import bottomNav from '../functionPage/bottomNav'
 import userModel from '../../moduleComponents/userModel'
 export default {
     name:'user',
@@ -58,7 +56,6 @@ export default {
         }
     },
     components:{
-        bottomNav,
         userModel
     },
     activated(){
